@@ -20,7 +20,16 @@ export default function MinimalistDashboard() {
   const { data: session, status } = useSession();
   const [guitarProgress, setGuitarProgress] = useState(0);
   const [guitarCompleted, setGuitarCompleted] = useState(0);
-  const [guitarLessonsCount] = useState(4); // Update if you add more lessons
+  const [guitarLessonsCount] = useState(4);
+  const [pianoProgress, setPianoProgress] = useState(0);
+  const [pianoCompleted, setPianoCompleted] = useState(0);
+  const [pianoLessonsCount] = useState(4);
+  const [drumProgress, setDrumProgress] = useState(0);
+  const [drumCompleted, setDrumCompleted] = useState(0);
+  const [drumLessonsCount] = useState(6);
+  const [violinProgress, setViolinProgress] = useState(0);
+  const [violinCompleted, setViolinCompleted] = useState(0);
+  const [violinLessonsCount] = useState(6);
   const [teachers, setTeachers] = useState<any[]>([]);
   const [loadingTeachers, setLoadingTeachers] = useState(true);
   const [showReviews, setShowReviews] = useState(false);
@@ -53,9 +62,31 @@ export default function MinimalistDashboard() {
       fetch(`/api/progress?userId=${encodeURIComponent(session.user.email)}`)
         .then(res => res.json())
         .then(data => {
-          const completed = Array.isArray(data) ? data.filter(p => p.completed).length : 0;
-          setGuitarCompleted(completed);
-          setGuitarProgress(Math.round((completed / guitarLessonsCount) * 100));
+          const completedLessons = Array.isArray(data)
+            ? data.filter((p: { lessonId?: string; completed?: boolean }) => p.completed)
+            : [];
+
+          const guitarOnly = completedLessons.filter(
+            (p: { lessonId?: string }) => typeof p.lessonId === "string" && /^\d+$/.test(p.lessonId)
+          );
+          const pianoOnly = completedLessons.filter(
+            (p: { lessonId?: string }) => typeof p.lessonId === "string" && p.lessonId.startsWith("piano-")
+          );
+          const drumOnly = completedLessons.filter(
+            (p: { lessonId?: string }) => typeof p.lessonId === "string" && p.lessonId.startsWith("drums-")
+          );
+          const violinOnly = completedLessons.filter(
+            (p: { lessonId?: string }) => typeof p.lessonId === "string" && p.lessonId.startsWith("violin-")
+          );
+
+          setGuitarCompleted(guitarOnly.length);
+          setGuitarProgress(Math.round((guitarOnly.length / guitarLessonsCount) * 100));
+          setPianoCompleted(pianoOnly.length);
+          setPianoProgress(Math.round((pianoOnly.length / pianoLessonsCount) * 100));
+          setDrumCompleted(drumOnly.length);
+          setDrumProgress(Math.round((drumOnly.length / drumLessonsCount) * 100));
+          setViolinCompleted(violinOnly.length);
+          setViolinProgress(Math.round((violinOnly.length / violinLessonsCount) * 100));
         });
     }
 
@@ -67,7 +98,7 @@ export default function MinimalistDashboard() {
         setLoadingTeachers(false);
       })
       .catch(() => setLoadingTeachers(false));
-  }, [session, status, guitarLessonsCount]);
+  }, [session, status, guitarLessonsCount, pianoLessonsCount, drumLessonsCount, violinLessonsCount]);
 
   return (
     <div className="min-h-screen bg-[#111111] text-slate-300 font-sans antialiased">
@@ -136,7 +167,7 @@ export default function MinimalistDashboard() {
                 <span className="text-xs text-slate-500">No lessons yet. Explore and enroll to begin learning!</span>
               </div>
             </section>
-            {/* Your Learning Progress Card */}
+            {/* Your Learning Progress Cards */}
             {guitarCompleted > 0 && (
               <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#181818] to-[#232323] border border-white/5 flex flex-col md:flex-row items-center justify-between px-8 py-8 mb-8 shadow-lg">
                 <div className="flex flex-col items-start md:items-center md:flex-row gap-6 w-full">
@@ -155,6 +186,63 @@ export default function MinimalistDashboard() {
                 </div>
               </section>
             )}
+
+            {pianoCompleted > 0 && (
+              <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#171717] to-[#202020] border border-white/5 flex flex-col md:flex-row items-center justify-between px-8 py-8 mb-8 shadow-lg">
+                <div className="flex flex-col items-start md:items-center md:flex-row gap-6 w-full">
+                  <img src="https://cdn.pixabay.com/photo/2023/03/31/18/44/piano-7890735_1280.jpg" alt="Piano" className="w-28 h-28 object-cover rounded-2xl border border-white/10 shadow" />
+                  <div className="flex-1">
+                    <h2 className="text-2xl font-bold text-white mb-2 tracking-tight">Piano Course Progress</h2>
+                    <div className="flex items-center gap-4 mb-2">
+                      <span className="text-lg font-semibold text-[#ff5a00]">{pianoProgress}%</span>
+                      <span className="text-xs text-slate-400">({pianoCompleted} of {pianoLessonsCount} lessons completed)</span>
+                    </div>
+                    <div className="w-full h-0.5 bg-[#222] rounded-full overflow-hidden mb-2">
+                      <div className="h-full bg-[#ff5a00] transition-all" style={{ width: `${pianoProgress}%` }} />
+                    </div>
+                    <Link href="/dashboard/student/piano" className="inline-block mt-2 px-6 py-2 rounded-full bg-[#ff5a00] text-white font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all">Resume Learning</Link>
+                  </div>
+                </div>
+              </section>
+            )}
+
+            {drumCompleted > 0 && (
+              <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#171717] to-[#242424] border border-white/5 flex flex-col md:flex-row items-center justify-between px-8 py-8 mb-8 shadow-lg">
+                <div className="flex flex-col items-start md:items-center md:flex-row gap-6 w-full">
+                  <img src="https://images.unsplash.com/photo-1543443374-b6fe10a6ab7b?q=80&w=400&auto=format&fit=crop" alt="Drums" className="w-28 h-28 object-cover rounded-2xl border border-white/10 shadow" />
+                  <div className="flex-1">
+                    <h2 className="text-2xl font-bold text-white mb-2 tracking-tight">Drum Course Progress</h2>
+                    <div className="flex items-center gap-4 mb-2">
+                      <span className="text-lg font-semibold text-[#ff5a00]">{drumProgress}%</span>
+                      <span className="text-xs text-slate-400">({drumCompleted} of {drumLessonsCount} lessons completed)</span>
+                    </div>
+                    <div className="w-full h-0.5 bg-[#222] rounded-full overflow-hidden mb-2">
+                      <div className="h-full bg-[#ff5a00] transition-all" style={{ width: `${drumProgress}%` }} />
+                    </div>
+                    <Link href="/dashboard/student/drums" className="inline-block mt-2 px-6 py-2 rounded-full bg-[#ff5a00] text-white font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all">Resume Learning</Link>
+                  </div>
+                </div>
+              </section>
+            )}
+
+            {violinCompleted > 0 && (
+              <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#181818] to-[#232323] border border-white/5 flex flex-col md:flex-row items-center justify-between px-8 py-8 mb-8 shadow-lg">
+                <div className="flex flex-col items-start md:items-center md:flex-row gap-6 w-full">
+                  <img src="https://www.sweetwater.com/sweetcare/media/2022/12/10_Violin-Playing-Position.jpg" alt="Violin" className="w-28 h-28 object-cover rounded-2xl border border-white/10 shadow" />
+                  <div className="flex-1">
+                    <h2 className="text-2xl font-bold text-white mb-2 tracking-tight">Violin Course Progress</h2>
+                    <div className="flex items-center gap-4 mb-2">
+                      <span className="text-lg font-semibold text-[#ff5a00]">{violinProgress}%</span>
+                      <span className="text-xs text-slate-400">({violinCompleted} of {violinLessonsCount} lessons completed)</span>
+                    </div>
+                    <div className="w-full h-0.5 bg-[#222] rounded-full overflow-hidden mb-2">
+                      <div className="h-full bg-[#ff5a00] transition-all" style={{ width: `${violinProgress}%` }} />
+                    </div>
+                    <Link href="/dashboard/student/violin" className="inline-block mt-2 px-6 py-2 rounded-full bg-[#ff5a00] text-white font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all">Resume Learning</Link>
+                  </div>
+                </div>
+              </section>
+            )}
             {/* Grid - Simple Card Style */}
             <section>
               <h3 className="text-lg font-semibold text-white mb-8">Instrument Archive</h3>
@@ -168,7 +256,36 @@ export default function MinimalistDashboard() {
                       <h4 className="text-sm font-semibold text-slate-200">{inst.name}</h4>
                       <p className="text-xs text-slate-600 mt-1">{inst.type}</p>
                     </Link>
+                    ) : inst.name === "Piano" ? (
+                    <Link key={inst.name} href="/dashboard/student/piano" className="group cursor-pointer block">
+                      <div className="aspect-[4/5] rounded-2xl overflow-hidden mb-4 bg-[#1a1a1a] border border-white/5">
+                        <img src={inst.image} className="w-full h-full object-cover grayscale opacity-40 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500" alt={inst.name} />
+                      </div>
+                      <h4 className="text-sm font-semibold text-slate-200">{inst.name}</h4>
+                      <p className="text-xs text-slate-600 mt-1">{inst.type}</p>
+                    </Link>
+                    ) : inst.name === "Drums" ? (
+  <Link key={inst.name} href="/dashboard/student/drums" className="group cursor-pointer block">
+    <div className="aspect-[4/5] rounded-2xl overflow-hidden mb-4 bg-[#1a1a1a] border border-white/5 shadow-2xl">
+      <img 
+        src={inst.image} 
+        className="w-full h-full object-cover grayscale opacity-40 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" 
+        alt={inst.name} 
+      />
+    </div>
+    <h4 className="text-sm font-semibold text-slate-200">{inst.name}</h4>
+    <p className="text-xs text-slate-600 mt-1">{inst.type}</p>
+  </Link>
+                    ) : inst.name === "Violin" ? (
+                    <Link key={inst.name} href="/dashboard/student/violin" className="group cursor-pointer block">
+                      <div className="aspect-[4/5] rounded-2xl overflow-hidden mb-4 bg-[#1a1a1a] border border-white/5">
+                        <img src={inst.image} className="w-full h-full object-cover grayscale opacity-40 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500" alt={inst.name} />
+                      </div>
+                      <h4 className="text-sm font-semibold text-slate-200">{inst.name}</h4>
+                      <p className="text-xs text-slate-600 mt-1">{inst.type}</p>
+                    </Link>
                   ) : (
+                  
                     <div key={inst.name} className="group cursor-pointer">
                       <div className="aspect-[4/5] rounded-2xl overflow-hidden mb-4 bg-[#1a1a1a] border border-white/5">
                         <img src={inst.image} className="w-full h-full object-cover grayscale opacity-40 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500" alt={inst.name} />
