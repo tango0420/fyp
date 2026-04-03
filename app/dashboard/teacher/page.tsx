@@ -13,6 +13,7 @@ import {
   Calendar,
   User
 } from "lucide-react";
+import { LogoutButton } from "@/app/components/LogoutButton";
 
 export default function TeacherDashboard() {
   const { data: session, status } = useSession();
@@ -45,6 +46,7 @@ export default function TeacherDashboard() {
         .then(res => res.json())
         .then(data => setAudioUploads(data.uploads || []));
     } else if (status === "unauthenticated") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLoading(false);
     }
   }, [status, session, router]);
@@ -89,6 +91,7 @@ export default function TeacherDashboard() {
             <div className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-xs">
               <User size={16} />
             </div>
+            <LogoutButton />
           </div>
         </div>
       </nav>

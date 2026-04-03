@@ -40,10 +40,15 @@ const guitarLessons = [
   },
 ];
 
+type LessonProgress = {
+  lessonId: string;
+  completed: boolean;
+};
+
 export default function GuitarLessonsPage() {
   const curriculumRef = useRef<HTMLElement>(null);
   const { data: session, status } = useSession();
-  const [progress, setProgress] = useState([]);
+  const [progress, setProgress] = useState<LessonProgress[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

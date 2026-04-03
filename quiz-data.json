@@ -1,0 +1,256 @@
+[
+  {
+    "quizId": "guitar-beginner-1",
+    "instrument": "Guitar",
+    "level": "Beginner",
+    "title": "Guitar Basics: Parts & Strings",
+    "description": "Learn the basic parts of a guitar and understand the strings",
+    "questions": [
+      {
+        "questionId": "q1",
+        "question": "How many strings does a standard acoustic guitar have?",
+        "type": "multiple-choice",
+        "options": ["4 strings", "6 strings", "8 strings", "12 strings"],
+        "correctAnswer": "6 strings",
+        "explanation": "A standard acoustic guitar has 6 strings tuned to E-A-D-G-B-E from lowest to highest."
+      },
+      {
+        "questionId": "q2",
+        "question": "What is the head of the guitar?",
+        "type": "multiple-choice",
+        "options": ["The body of the guitar", "The part at the end of the neck with tuning pegs", "The sound hole", "The frets"],
+        "correctAnswer": "The part at the end of the neck with tuning pegs",
+        "explanation": "The headstock (or head) is located at the end of the guitar neck and holds the tuning pegs."
+      },
+      {
+        "questionId": "q3",
+        "question": "True or False: The fretboard is where you press your fingers to change the notes.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "The fretboard contains metal strips called frets that divide the neck into sections. Pressing strings against different frets changes the pitch."
+      },
+      {
+        "questionId": "q4",
+        "question": "Which of these is NOT a part of a guitar?",
+        "type": "multiple-choice",
+        "options": ["Soundhole", "Pickguard", "Bridge", "Piston"],
+        "correctAnswer": "Piston",
+        "explanation": "A piston is not a part of a guitar. Soundhole, pickguard, and bridge are all essential parts."
+      },
+      {
+        "questionId": "q5",
+        "question": "What does the bridge do on a guitar?",
+        "type": "multiple-choice",
+        "options": ["Holds the strings in place", "Amplifies sound", "Changes the tuning", "Protects the frets"],
+        "correctAnswer": "Holds the strings in place",
+        "explanation": "The bridge anchors the strings on the body of the guitar and transfers string vibrations to the soundboard."
+      }
+    ],
+    "passingScore": 70
+  },
+  {
+    "quizId": "guitar-beginner-2",
+    "instrument": "Guitar",
+    "level": "Beginner",
+    "title": "Guitar Basics: Open Chords",
+    "description": "Master the fundamental open chords every guitarist should know",
+    "questions": [
+      {
+        "questionId": "q1",
+        "question": "Which of these is an open chord?",
+        "type": "multiple-choice",
+        "options": ["C Major", "F# Major", "B Major", "A# Minor"],
+        "correctAnswer": "C Major",
+        "explanation": "C Major is a common open chord using fingers on the 1st and 2nd frets. F#, B, and A# are typically played as barre chords."
+      },
+      {
+        "questionId": "q2",
+        "question": "True or False: An open chord means at least one string is played open without fretting.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "An open chord includes at least one open string (not fretted) in the chord shape."
+      },
+      {
+        "questionId": "q3",
+        "question": "The G Major chord is formed primarily on which frets?",
+        "type": "multiple-choice",
+        "options": ["1st and 2nd frets", "2nd and 3rd frets", "1st and 3rd frets", "All open strings"],
+        "correctAnswer": "1st and 3rd frets",
+        "explanation": "G Major uses the 1st and 3rd frets with one open string (the high E string)."
+      }
+    ],
+    "passingScore": 70
+  },
+  {
+    "quizId": "piano-beginner-1",
+    "instrument": "Piano",
+    "level": "Beginner",
+    "title": "Piano Keys: Notes & Layout",
+    "description": "Understand the piano keyboard layout and note names",
+    "questions": [
+      {
+        "questionId": "q1",
+        "question": "How many keys are on a standard piano?",
+        "type": "multiple-choice",
+        "options": ["61 keys", "73 keys", "88 keys", "108 keys"],
+        "correctAnswer": "88 keys",
+        "explanation": "A standard piano has 88 keys spanning from A0 to C8."
+      },
+      {
+        "questionId": "q2",
+        "question": "Which key color is more common on a piano?",
+        "type": "multiple-choice",
+        "options": ["Black keys are more common", "White keys are more common", "They are equal", "It varies by piano"],
+        "correctAnswer": "White keys are more common",
+        "explanation": "There are 52 white keys and 36 black keys on a standard 88-key piano."
+      },
+      {
+        "questionId": "q3",
+        "question": "True or False: Middle C is in the middle of the piano keyboard.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "Middle C (C4) is approximately in the center of an 88-key piano keyboard."
+      },
+      {
+        "questionId": "q4",
+        "question": "How many black keys are in each octave?",
+        "type": "multiple-choice",
+        "options": ["5 black keys", "6 black keys", "7 black keys", "8 black keys"],
+        "correctAnswer": "5 black keys",
+        "explanation": "Each octave contains 12 keys: 7 white keys and 5 black keys."
+      }
+    ],
+    "passingScore": 70
+  },
+  {
+    "quizId": "drums-beginner-1",
+    "instrument": "Drums",
+    "level": "Beginner",
+    "title": "Drums: Basic Components",
+    "description": "Learn the parts of a drum kit and their names",
+    "questions": [
+      {
+        "questionId": "q1",
+        "question": "What is the largest drum in a basic drum kit called?",
+        "type": "multiple-choice",
+        "options": ["Snare drum", "Bass drum", "Tom", "Cymbal"],
+        "correctAnswer": "Bass drum",
+        "explanation": "The bass drum (or kick drum) is the largest drum, played with a foot pedal."
+      },
+      {
+        "questionId": "q2",
+        "question": "True or False: Cymbals are made of metal.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "Cymbals are made of brass or bronze alloys and produce metallic sounds."
+      },
+      {
+        "questionId": "q3",
+        "question": "Which drum typically has wires underneath it?",
+        "type": "multiple-choice",
+        "options": ["Bass drum", "Tom", "Snare drum", "Floor tom"],
+        "correctAnswer": "Snare drum",
+        "explanation": "The snare drum has metal wires (called snares) on the bottom that vibrate to create its characteristic sound."
+      }
+    ],
+    "passingScore": 70
+  },
+  {
+    "quizId": "violin-beginner-1",
+    "instrument": "Violin",
+    "level": "Beginner",
+    "title": "Violin: Structure & Parts",
+    "description": "Understand the basic structure of a violin",
+    "questions": [
+      {
+        "questionId": "q1",
+        "question": "How many strings does a violin have?",
+        "type": "multiple-choice",
+        "options": ["2 strings", "4 strings", "6 strings", "8 strings"],
+        "correctAnswer": "4 strings",
+        "explanation": "A standard violin has 4 strings tuned to G-D-A-E from lowest to highest."
+      },
+      {
+        "questionId": "q2",
+        "question": "What is the bow used for in violin playing?",
+        "type": "multiple-choice",
+        "options": ["Tuning the strings", "Producing sound by rubbing the strings", "Holding the violin", "Adjusting tension"],
+        "correctAnswer": "Producing sound by rubbing the strings",
+        "explanation": "The bow contains horsehair that rubs against the strings to create vibrations and sound."
+      },
+      {
+        "questionId": "q3",
+        "question": "True or False: The chin rest is part of the violin's body.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "The chin rest is mounted on the lower bout of the violin, helping the player support and stabilize the instrument."
+      }
+    ],
+    "passingScore": 70
+  },
+  {
+    "quizId": "guitar-intermediate-1",
+    "instrument": "Guitar",
+    "level": "Intermediate",
+    "title": "Barre Chords & Techniques",
+    "description": "Build your skills with barre chords and intermediate techniques",
+    "questions": [
+      {
+        "questionId": "q1",
+        "question": "What is a barre chord?",
+        "type": "multiple-choice",
+        "options": ["A chord played on open strings only", "A chord where one finger presses multiple strings across different frets", "A chord that uses only black strings", "A chord played very quietly"],
+        "correctAnswer": "A chord where one finger presses multiple strings across different frets",
+        "explanation": "A barre chord uses one finger (usually the index) pressed across multiple strings on the same fret to change pitch."
+      },
+      {
+        "questionId": "q2",
+        "question": "Which finger is most commonly used for barre chords?",
+        "type": "multiple-choice",
+        "options": ["Thumb", "Index finger", "Middle finger", "Pinky"],
+        "correctAnswer": "Index finger",
+        "explanation": "The index finger is typically used for barre chords because it's the longest and strongest."
+      },
+      {
+        "questionId": "q3",
+        "question": "True or False: Palm muting produces a softer, more controlled sound.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "Palm muting involves resting the palm of your picking hand on the strings to dampen the sound and create a muted effect."
+      }
+    ],
+    "passingScore": 75
+  },
+  {
+    "quizId": "piano-intermediate-1",
+    "instrument": "Piano",
+    "level": "Intermediate",
+    "title": "Scales & Arpeggios",
+    "description": "Master scales and arpeggios for fluent playing",
+    "questions": [
+      {
+        "questionId": "q1",
+        "question": "How many notes are in a major scale?",
+        "type": "multiple-choice",
+        "options": ["5 notes", "7 notes", "8 notes", "12 notes"],
+        "correctAnswer": "7 notes",
+        "explanation": "A major scale consists of 7 notes (plus the octave, which repeats the first note)."
+      },
+      {
+        "questionId": "q2",
+        "question": "What is an arpeggio?",
+        "type": "multiple-choice",
+        "options": ["A chord played one note at a time", "Multiple chords played together", "A fast scale", "A technique to mute strings"],
+        "correctAnswer": "A chord played one note at a time",
+        "explanation": "An arpeggio breaks up a chord and plays its notes sequentially rather than simultaneously."
+      }
+    ],
+    "passingScore": 75
+  }
+]

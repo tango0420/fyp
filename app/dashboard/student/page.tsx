@@ -2,21 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 import { MessageSquare } from "lucide-react";
-
 import Link from "next/link";
-import { Disc, Bell, Search, Play, Clock, BarChart3, Layers, Settings, ChevronRight } from "lucide-react";
+import { Search, Play, Clock, BarChart3, ChevronRight } from "lucide-react";
 import { useSession } from "next-auth/react";
-
-const instruments = [
-  { name: "Guitar", type: "Electric / Acoustic", image: "https://images.unsplash.com/photo-1550291652-6ea9114a47b1?q=80&w=800&auto=format&fit=crop" },
-  { name: "Piano", type: "Grand / Digital", image: "https://cdn.pixabay.com/photo/2023/03/31/18/44/piano-7890735_1280.jpg" },
-  { name: "Drums", type: "Percussion", image: "https://images.unsplash.com/photo-1543443374-b6fe10a6ab7b?q=80&w=800&auto=format&fit=crop" },
-  { name: "Violin", type: "Classical", image: "https://www.sweetwater.com/sweetcare/media/2022/12/10_Violin-Playing-Position.jpg" },
-];
-
+import { LogoutButton } from "@/app/components/LogoutButton";
+import StudentSidebar from "@/app/components/StudentSidebar";
 
 export default function MinimalistDashboard() {
-  const [userProgress, setUserProgress] = useState({});
   const { data: session, status } = useSession();
   const [guitarProgress, setGuitarProgress] = useState(0);
   const [guitarCompleted, setGuitarCompleted] = useState(0);
@@ -30,11 +22,12 @@ export default function MinimalistDashboard() {
   const [violinProgress, setViolinProgress] = useState(0);
   const [violinCompleted, setViolinCompleted] = useState(0);
   const [violinLessonsCount] = useState(6);
-  const [teachers, setTeachers] = useState<any[]>([]);
+  const [teachers, setTeachers] = useState<Array<{ _id: string; userId: string; name: string; instrument: string }>>([]);
   const [loadingTeachers, setLoadingTeachers] = useState(true);
   const [showReviews, setShowReviews] = useState(false);
-  const [reviews, setReviews] = useState<any[]>([]);
+  const [reviews, setReviews] = useState<Array<{ teacherName: string; feedback: string; createdAt: string }>>([]);
   const [loadingReviews, setLoadingReviews] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const router = require('next/navigation').useRouter();
   const fetchReviews = async () => {
     if (!session?.user?.email) return;
@@ -50,14 +43,6 @@ export default function MinimalistDashboard() {
     setLoadingReviews(false);
   };
   useEffect(() => {
-    if (session?.user) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setUserProgress({
-        practiceStreak: 12,
-        weeklyGoal: 65,
-      });
-    }
-
     if (status === "authenticated" && session?.user?.email) {
       fetch(`/api/progress?userId=${encodeURIComponent(session.user.email)}`)
         .then(res => res.json())
@@ -98,26 +83,12 @@ export default function MinimalistDashboard() {
         setLoadingTeachers(false);
       })
       .catch(() => setLoadingTeachers(false));
-  }, [session, status, guitarLessonsCount, pianoLessonsCount, drumLessonsCount, violinLessonsCount]);
+  }, [status, session, guitarLessonsCount, pianoLessonsCount, drumLessonsCount, violinLessonsCount]);
 
   return (
     <div className="min-h-screen bg-[#111111] text-slate-300 font-sans antialiased">
-      
-      {/* 1. Sidebar - Strictly Grayscale */}
-      <aside className="fixed left-0 top-0 h-full w-20 z-50 border-r border-white/5 bg-[#1a1a1a] flex flex-col items-center py-10">
-        <div className="mb-12">
-          <Disc size={24} className="text-[#ff5a00]" />
-        </div>
-        <nav className="flex flex-col gap-10 text-slate-600">
-          <Layers size={22} className="text-slate-200 cursor-pointer" />
-          <BarChart3 size={22} className="hover:text-white transition-colors cursor-pointer" />
-          <Settings size={22} className="hover:text-white transition-colors cursor-pointer" />
-        </nav>
-      </aside>
-
       <main className="pl-20 max-w-[1440px] mx-auto">
-        
-        {/* 2. Header - Simple & Clean */}
+        <StudentSidebar />
         <header className="fixed top-0 left-20 right-0 z-40 h-20 px-12 flex items-center justify-between border-b border-white/5 bg-[#111111]">
           <div className="flex items-center gap-4 text-sm font-medium tracking-tight">
              <span className="text-slate-600">Virtuoso</span>
@@ -143,16 +114,70 @@ export default function MinimalistDashboard() {
     </span>
   )}
 </div>
+                <LogoutButton />
             </div>
           </div>
         </header>
 
-        <div className="pl-5 pt-30 px-12 py-12 grid grid-cols-12 gap-12">
+        <div className="pl-5 pt-30 px-12 py-8 grid grid-cols-12 gap-8">
           
-          {/* Main Section */}
-          <div className="col-span-12 lg:col-span-8 space-y-16">
+          {/* Main Section - Full Width */}
+          <div className="col-span-12 space-y-8">
             
-          
+            {/* Quick Stats Section */}
+            <section>
+              <h2 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Quick Stats</h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 hover:border-white/20 transition-colors">
+                  <p className="text-[10px] text-slate-500 uppercase tracking-widest mb-2">Total Practice</p>
+                  <p className="text-2xl font-bold text-white">42h</p>
+                  <p className="text-xs text-slate-600 mt-1">All time</p>
+                </div>
+                <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 hover:border-white/20 transition-colors">
+                  <p className="text-[10px] text-slate-500 uppercase tracking-widest mb-2">Instruments</p>
+                  <p className="text-2xl font-bold text-[#ff5a00]">4</p>
+                  <p className="text-xs text-slate-600 mt-1">Learning</p>
+                </div>
+                <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 hover:border-white/20 transition-colors">
+                  <p className="text-[10px] text-slate-500 uppercase tracking-widest mb-2">Current Level</p>
+                  <p className="text-2xl font-bold text-white">Int.</p>
+                  <p className="text-xs text-slate-600 mt-1">Intermediate</p>
+                </div>
+                <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 hover:border-white/20 transition-colors">
+                  <p className="text-[10px] text-slate-500 uppercase tracking-widest mb-2">Lessons Done</p>
+                  <p className="text-2xl font-bold text-white">15</p>
+                  <p className="text-xs text-slate-600 mt-1">Completed</p>
+                </div>
+              </div>
+            </section>
+
+            {/* Quick Actions */}
+            <section>
+              <h2 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Quick Actions</h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <Link href="/dashboard/student/instruments" className="group">
+                  <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 text-center hover:border-[#ff5a00] transition-colors cursor-pointer">
+                    <p className="text-sm font-semibold text-white group-hover:text-[#ff5a00] transition-colors">Browse Instruments</p>
+                  </div>
+                </Link>
+                <button className="group w-full">
+                  <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 text-center hover:border-[#ff5a00] transition-colors cursor-pointer">
+                    <p className="text-sm font-semibold text-white group-hover:text-[#ff5a00] transition-colors">Book Tutor</p>
+                  </div>
+                </button>
+                <button className="group w-full">
+                  <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 text-center hover:border-[#ff5a00] transition-colors cursor-pointer">
+                    <p className="text-sm font-semibold text-white group-hover:text-[#ff5a00] transition-colors">Continue Lesson</p>
+                  </div>
+                </button>
+                <button className="group w-full">
+                  <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 text-center hover:border-[#ff5a00] transition-colors cursor-pointer">
+                    <p className="text-sm font-semibold text-white group-hover:text-[#ff5a00] transition-colors">View Achievements</p>
+                  </div>
+                </button>
+              </div>
+            </section>
+
             {/* Welcome Section for First-Time Users */}
             <section className="relative overflow-hidden rounded-3xl bg-[#1a1a1a] border border-white/5 flex flex-col items-center justify-center text-center py-20 px-8">
               <img 
@@ -167,170 +192,159 @@ export default function MinimalistDashboard() {
                 <span className="text-xs text-slate-500">No lessons yet. Explore and enroll to begin learning!</span>
               </div>
             </section>
-            {/* Your Learning Progress Cards */}
-            {guitarCompleted > 0 && (
-              <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#181818] to-[#232323] border border-white/5 flex flex-col md:flex-row items-center justify-between px-8 py-8 mb-8 shadow-lg">
-                <div className="flex flex-col items-start md:items-center md:flex-row gap-6 w-full">
-                  <img src="https://images.unsplash.com/photo-1550291652-6ea9114a47b1?q=80&w=400" alt="Guitar" className="w-28 h-28 object-cover rounded-2xl border border-white/10 shadow" />
-                  <div className="flex-1">
-                    <h2 className="text-2xl font-bold text-white mb-2 tracking-tight">Guitar Course Progress</h2>
-                    <div className="flex items-center gap-4 mb-2">
-                      <span className="text-lg font-semibold text-[#ff5a00]">{guitarProgress}%</span>
-                      <span className="text-xs text-slate-400">({guitarCompleted} of {guitarLessonsCount} lessons completed)</span>
-                    </div>
-                    <div className="w-full h-0.5 bg-[#222] rounded-full overflow-hidden mb-2">
-                      <div className="h-full bg-[#ff5a00] transition-all" style={{ width: `${guitarProgress}%` }} />
-                    </div>
-                    <Link href="/dashboard/student/guitar" className="inline-block mt-2 px-6 py-2 rounded-full bg-[#ff5a00] text-white font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all">Resume Learning</Link>
-                  </div>
-                </div>
-              </section>
-            )}
-
-            {pianoCompleted > 0 && (
-              <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#171717] to-[#202020] border border-white/5 flex flex-col md:flex-row items-center justify-between px-8 py-8 mb-8 shadow-lg">
-                <div className="flex flex-col items-start md:items-center md:flex-row gap-6 w-full">
-                  <img src="https://cdn.pixabay.com/photo/2023/03/31/18/44/piano-7890735_1280.jpg" alt="Piano" className="w-28 h-28 object-cover rounded-2xl border border-white/10 shadow" />
-                  <div className="flex-1">
-                    <h2 className="text-2xl font-bold text-white mb-2 tracking-tight">Piano Course Progress</h2>
-                    <div className="flex items-center gap-4 mb-2">
-                      <span className="text-lg font-semibold text-[#ff5a00]">{pianoProgress}%</span>
-                      <span className="text-xs text-slate-400">({pianoCompleted} of {pianoLessonsCount} lessons completed)</span>
-                    </div>
-                    <div className="w-full h-0.5 bg-[#222] rounded-full overflow-hidden mb-2">
-                      <div className="h-full bg-[#ff5a00] transition-all" style={{ width: `${pianoProgress}%` }} />
-                    </div>
-                    <Link href="/dashboard/student/piano" className="inline-block mt-2 px-6 py-2 rounded-full bg-[#ff5a00] text-white font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all">Resume Learning</Link>
-                  </div>
-                </div>
-              </section>
-            )}
-
-            {drumCompleted > 0 && (
-              <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#171717] to-[#242424] border border-white/5 flex flex-col md:flex-row items-center justify-between px-8 py-8 mb-8 shadow-lg">
-                <div className="flex flex-col items-start md:items-center md:flex-row gap-6 w-full">
-                  <img src="https://images.unsplash.com/photo-1543443374-b6fe10a6ab7b?q=80&w=400&auto=format&fit=crop" alt="Drums" className="w-28 h-28 object-cover rounded-2xl border border-white/10 shadow" />
-                  <div className="flex-1">
-                    <h2 className="text-2xl font-bold text-white mb-2 tracking-tight">Drum Course Progress</h2>
-                    <div className="flex items-center gap-4 mb-2">
-                      <span className="text-lg font-semibold text-[#ff5a00]">{drumProgress}%</span>
-                      <span className="text-xs text-slate-400">({drumCompleted} of {drumLessonsCount} lessons completed)</span>
-                    </div>
-                    <div className="w-full h-0.5 bg-[#222] rounded-full overflow-hidden mb-2">
-                      <div className="h-full bg-[#ff5a00] transition-all" style={{ width: `${drumProgress}%` }} />
-                    </div>
-                    <Link href="/dashboard/student/drums" className="inline-block mt-2 px-6 py-2 rounded-full bg-[#ff5a00] text-white font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all">Resume Learning</Link>
-                  </div>
-                </div>
-              </section>
-            )}
-
-            {violinCompleted > 0 && (
-              <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#181818] to-[#232323] border border-white/5 flex flex-col md:flex-row items-center justify-between px-8 py-8 mb-8 shadow-lg">
-                <div className="flex flex-col items-start md:items-center md:flex-row gap-6 w-full">
-                  <img src="https://www.sweetwater.com/sweetcare/media/2022/12/10_Violin-Playing-Position.jpg" alt="Violin" className="w-28 h-28 object-cover rounded-2xl border border-white/10 shadow" />
-                  <div className="flex-1">
-                    <h2 className="text-2xl font-bold text-white mb-2 tracking-tight">Violin Course Progress</h2>
-                    <div className="flex items-center gap-4 mb-2">
-                      <span className="text-lg font-semibold text-[#ff5a00]">{violinProgress}%</span>
-                      <span className="text-xs text-slate-400">({violinCompleted} of {violinLessonsCount} lessons completed)</span>
-                    </div>
-                    <div className="w-full h-0.5 bg-[#222] rounded-full overflow-hidden mb-2">
-                      <div className="h-full bg-[#ff5a00] transition-all" style={{ width: `${violinProgress}%` }} />
-                    </div>
-                    <Link href="/dashboard/student/violin" className="inline-block mt-2 px-6 py-2 rounded-full bg-[#ff5a00] text-white font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all">Resume Learning</Link>
-                  </div>
-                </div>
-              </section>
-            )}
-            {/* Grid - Simple Card Style */}
-            <section>
-              <h3 className="text-lg font-semibold text-white mb-8">Instrument Archive</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
-                {instruments.map((inst) => (
-                  inst.name === "Guitar" ? (
-                    <Link key={inst.name} href="/dashboard/student/guitar" className="group cursor-pointer block">
-                      <div className="aspect-[4/5] rounded-2xl overflow-hidden mb-4 bg-[#1a1a1a] border border-white/5">
-                        <img src={inst.image} className="w-full h-full object-cover grayscale opacity-40 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500" alt={inst.name} />
+            {/* Your Learning Progress - Simple Classic */}
+            {(guitarCompleted > 0 || pianoCompleted > 0 || drumCompleted > 0 || violinCompleted > 0) && (
+              <section>
+                <h2 className="text-lg font-bold text-white mb-4">Your Progress</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+                  {guitarCompleted > 0 && (
+                    <Link href="/dashboard/student/guitar" className="group">
+                      <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 hover:border-[#ff5a00] transition-colors">
+                        <div className="flex items-center gap-3 mb-4">
+                          <img src="https://images.unsplash.com/photo-1550291652-6ea9114a47b1?q=80&w=100" alt="Guitar" className="w-10 h-10 object-cover rounded" />
+                          <div className="flex-1">
+                            <h4 className="text-sm font-semibold text-white">Guitar</h4>
+                            <p className="text-xs text-slate-500">{guitarCompleted}/{guitarLessonsCount} lessons</p>
+                          </div>
+                        </div>
+                        <div className="w-full h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                          <div className="h-full bg-[#ff5a00] transition-all" style={{ width: `${guitarProgress}%` }} />
+                        </div>
+                        <p className="text-xs text-[#ff5a00] font-semibold mt-3 text-right">{guitarProgress}%</p>
                       </div>
-                      <h4 className="text-sm font-semibold text-slate-200">{inst.name}</h4>
-                      <p className="text-xs text-slate-600 mt-1">{inst.type}</p>
                     </Link>
-                    ) : inst.name === "Piano" ? (
-                    <Link key={inst.name} href="/dashboard/student/piano" className="group cursor-pointer block">
-                      <div className="aspect-[4/5] rounded-2xl overflow-hidden mb-4 bg-[#1a1a1a] border border-white/5">
-                        <img src={inst.image} className="w-full h-full object-cover grayscale opacity-40 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500" alt={inst.name} />
-                      </div>
-                      <h4 className="text-sm font-semibold text-slate-200">{inst.name}</h4>
-                      <p className="text-xs text-slate-600 mt-1">{inst.type}</p>
-                    </Link>
-                    ) : inst.name === "Drums" ? (
-  <Link key={inst.name} href="/dashboard/student/drums" className="group cursor-pointer block">
-    <div className="aspect-[4/5] rounded-2xl overflow-hidden mb-4 bg-[#1a1a1a] border border-white/5 shadow-2xl">
-      <img 
-        src={inst.image} 
-        className="w-full h-full object-cover grayscale opacity-40 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" 
-        alt={inst.name} 
-      />
-    </div>
-    <h4 className="text-sm font-semibold text-slate-200">{inst.name}</h4>
-    <p className="text-xs text-slate-600 mt-1">{inst.type}</p>
-  </Link>
-                    ) : inst.name === "Violin" ? (
-                    <Link key={inst.name} href="/dashboard/student/violin" className="group cursor-pointer block">
-                      <div className="aspect-[4/5] rounded-2xl overflow-hidden mb-4 bg-[#1a1a1a] border border-white/5">
-                        <img src={inst.image} className="w-full h-full object-cover grayscale opacity-40 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500" alt={inst.name} />
-                      </div>
-                      <h4 className="text-sm font-semibold text-slate-200">{inst.name}</h4>
-                      <p className="text-xs text-slate-600 mt-1">{inst.type}</p>
-                    </Link>
-                  ) : (
+                  )}
                   
-                    <div key={inst.name} className="group cursor-pointer">
-                      <div className="aspect-[4/5] rounded-2xl overflow-hidden mb-4 bg-[#1a1a1a] border border-white/5">
-                        <img src={inst.image} className="w-full h-full object-cover grayscale opacity-40 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500" alt={inst.name} />
+                  {pianoCompleted > 0 && (
+                    <Link href="/dashboard/student/piano" className="group">
+                      <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 hover:border-[#ff5a00] transition-colors">
+                        <div className="flex items-center gap-3 mb-4">
+                          <img src="https://cdn.pixabay.com/photo/2023/03/31/18/44/piano-7890735_1280.jpg" alt="Piano" className="w-10 h-10 object-cover rounded" />
+                          <div className="flex-1">
+                            <h4 className="text-sm font-semibold text-white">Piano</h4>
+                            <p className="text-xs text-slate-500">{pianoCompleted}/{pianoLessonsCount} lessons</p>
+                          </div>
+                        </div>
+                        <div className="w-full h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                          <div className="h-full bg-[#ff5a00] transition-all" style={{ width: `${pianoProgress}%` }} />
+                        </div>
+                        <p className="text-xs text-[#ff5a00] font-semibold mt-3 text-right">{pianoProgress}%</p>
                       </div>
-                      <h4 className="text-sm font-semibold text-slate-200">{inst.name}</h4>
-                      <p className="text-xs text-slate-600 mt-1">{inst.type}</p>
-                    </div>
-                  )
-                ))}
-              </div>
-            </section>
-          </div>
-
-          {/* Sidebar - Clean Typography */}
-          <div className="col-span-12 lg:col-span-4 space-y-12">
-            <div className="bg-[#1a1a1a] border border-white/5 rounded-3xl p-10">
-              <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-600 mb-10">Daily Activity</h4>
-              <div className="space-y-8">
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                        <Clock size={20} className="text-slate-500" />
-                        <span className="text-sm font-medium">Practice Streak</span>
-                    </div>
-                    <span className="text-xl font-bold text-white">12 Days</span>
+                    </Link>
+                  )}
+                  
+                  {drumCompleted > 0 && (
+                    <Link href="/dashboard/student/drums" className="group">
+                      <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 hover:border-[#ff5a00] transition-colors">
+                        <div className="flex items-center gap-3 mb-4">
+                          <img src="https://images.unsplash.com/photo-1543443374-b6fe10a6ab7b?q=80&w=100&auto=format&fit=crop" alt="Drums" className="w-10 h-10 object-cover rounded" />
+                          <div className="flex-1">
+                            <h4 className="text-sm font-semibold text-white">Drums</h4>
+                            <p className="text-xs text-slate-500">{drumCompleted}/{drumLessonsCount} lessons</p>
+                          </div>
+                        </div>
+                        <div className="w-full h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                          <div className="h-full bg-[#ff5a00] transition-all" style={{ width: `${drumProgress}%` }} />
+                        </div>
+                        <p className="text-xs text-[#ff5a00] font-semibold mt-3 text-right">{drumProgress}%</p>
+                      </div>
+                    </Link>
+                  )}
+                  
+                  {violinCompleted > 0 && (
+                    <Link href="/dashboard/student/violin" className="group">
+                      <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 hover:border-[#ff5a00] transition-colors">
+                        <div className="flex items-center gap-3 mb-4">
+                          <img src="https://www.sweetwater.com/sweetcare/media/2022/12/10_Violin-Playing-Position.jpg" alt="Violin" className="w-10 h-10 object-cover rounded" />
+                          <div className="flex-1">
+                            <h4 className="text-sm font-semibold text-white">Violin</h4>
+                            <p className="text-xs text-slate-500">{violinCompleted}/{violinLessonsCount} lessons</p>
+                          </div>
+                        </div>
+                        <div className="w-full h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                          <div className="h-full bg-[#ff5a00] transition-all" style={{ width: `${violinProgress}%` }} />
+                        </div>
+                        <p className="text-xs text-[#ff5a00] font-semibold mt-3 text-right">{violinProgress}%</p>
+                      </div>
+                    </Link>
+                  )}
                 </div>
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                        <BarChart3 size={20} className="text-slate-500" />
-                        <span className="text-sm font-medium">Weekly Goal</span>
+              </section>
+            )}
+          </div>
+        </div>
+
+        {/* Achievements Section */}
+        <div className="px-12 pb-4 grid grid-cols-12 gap-8">
+          <div className="col-span-12">
+            <h2 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Recent Achievements</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 text-center hover:border-white/20 transition-colors">
+                <p className="text-2xl mb-2">🎸</p>
+                <p className="text-xs font-semibold text-white">Guitar Master</p>
+                <p className="text-[10px] text-slate-500 mt-1">Completed 4 lessons</p>
+              </div>
+              <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 text-center hover:border-white/20 transition-colors">
+                <p className="text-2xl mb-2">🔥</p>
+                <p className="text-xs font-semibold text-white">12 Day Streak</p>
+                <p className="text-[10px] text-slate-500 mt-1">Keep it up!</p>
+              </div>
+              <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 text-center hover:border-white/20 transition-colors">
+                <p className="text-2xl mb-2">⭐</p>
+                <p className="text-xs font-semibold text-white">Quick Learner</p>
+                <p className="text-[10px] text-slate-500 mt-1">50 hrs practiced</p>
+              </div>
+              <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 text-center hover:border-white/20 transition-colors opacity-40">
+                <p className="text-2xl mb-2">🏆</p>
+                <p className="text-xs font-semibold text-slate-500">Locked</p>
+                <p className="text-[10px] text-slate-600 mt-1">8 instruments</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Activities & Tutors Section */}
+        <div className="px-12 pb-12 grid grid-cols-12 gap-8">
+          <div className="col-span-12 lg:col-span-6">
+            <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-6 h-full">
+              <h2 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4">Daily Activity</h2>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between p-3 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
+                    <div className="flex items-center gap-3">
+                        <Clock size={16} className="text-slate-500" />
+                        <span className="text-xs font-medium text-slate-200">Practice Streak</span>
                     </div>
-                    <span className="text-xl font-bold text-[#ff5a00]">65%</span>
+                    <span className="text-sm font-bold text-white">12 Days</span>
+                </div>
+                <div className="flex items-center justify-between p-3 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
+                    <div className="flex items-center gap-3">
+                        <BarChart3 size={16} className="text-slate-500" />
+                        <span className="text-xs font-medium text-slate-200">Weekly Goal</span>
+                    </div>
+                    <span className="text-sm font-bold text-[#ff5a00]">65%</span>
+                </div>
+                <div className="flex items-center justify-between p-3 border border-white/10 rounded-lg hover:border-white/20 transition-colors">
+                    <div className="flex items-center gap-3">
+                        <Play size={16} className="text-slate-500" />
+                        <span className="text-xs font-medium text-slate-200">Today&apos;s Session</span>
+                    </div>
+                    <span className="text-sm font-bold text-white">45 min</span>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div className="space-y-6">
-              <div className="flex items-center justify-between mb-2">
-                <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-600">Suggested Tutors</h4>
+          <div className="col-span-12 lg:col-span-6">
+            <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-6 h-full">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-sm font-bold uppercase tracking-widest text-slate-400">Suggested Tutors</h2>
                 <button
-                  className="flex items-center gap-1 px-3 py-1 rounded-full bg-[#ff5a00] text-white text-xs font-semibold hover:bg-white hover:text-black transition-all"
+                  className="px-3 py-1 bg-[#ff5a00] hover:bg-[#ff7a2a] text-white text-xs font-semibold rounded transition-colors flex items-center gap-1"
                   onClick={fetchReviews}
                   disabled={loadingReviews}
                   title="Show My Reviews"
                 >
-                  <MessageSquare size={14} /> Review
+                  <MessageSquare size={14} /> Reviews
                 </button>
               </div>
               {loadingTeachers ? (
@@ -338,26 +352,28 @@ export default function MinimalistDashboard() {
               ) : teachers.length === 0 ? (
                 <div className="text-slate-500 text-sm">No tutors available yet.</div>
               ) : (
-                teachers.map((tutor) => (
+                <div className="space-y-3 max-h-80 overflow-y-auto">
+                {teachers.map((tutor: { _id: string; userId: string; name: string; instrument: string }) => (
                   <div
                     key={tutor._id}
-                    className="flex items-center justify-between p-4 rounded-2xl hover:bg-white/5 transition-colors cursor-pointer group"
+                    className="flex items-center justify-between p-3 rounded hover:bg-white/5 transition-colors cursor-pointer group"
                     onClick={() => router.push(`/dashboard/student/book-tutor?tutorId=${encodeURIComponent(tutor.userId)}`)}
                   >
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-white font-bold text-lg">
+                    <div className="flex items-center gap-3 flex-1">
+                      <div className="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center text-white font-bold text-sm">
                         {tutor.name ? tutor.name[0] : "T"}
                       </div>
-                      <div>
-                        <p className="text-sm font-semibold text-slate-200">{tutor.name}</p>
-                        <p className="text-[10px] text-slate-600 uppercase tracking-widest">{tutor.instrument}</p>
-                        <p className="text-[10px] text-slate-500">{tutor.contact}</p>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-semibold text-slate-200 truncate">{tutor.name}</p>
+                        <p className="text-[10px] text-slate-500">{tutor.instrument}</p>
                       </div>
                     </div>
-                    <ChevronRight size={16} className="text-slate-700 group-hover:text-white transition-colors" />
+                    <ChevronRight size={14} className="text-slate-700 flex-shrink-0" />
                   </div>
-                ))
+                ))}
+                </div>
               )}
+            
               {/* Review Modal/Dropdown */}
               {showReviews && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
@@ -378,7 +394,7 @@ export default function MinimalistDashboard() {
                       <div className="text-slate-500 text-sm">No reviews yet.</div>
                     ) : (
                       <ul className="space-y-4 max-h-80 overflow-y-auto pr-2">
-                        {reviews.map((review, idx) => (
+                        {reviews.map((review: { teacherName: string; feedback: string; createdAt: string }, idx: number) => (
                           <li key={idx} className="bg-[#232323] p-4 rounded-xl border border-white/10">
                             <div className="flex items-center gap-2 mb-1">
                               <span className="text-xs text-slate-400">Teacher:</span>

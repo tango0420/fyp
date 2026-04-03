@@ -99,7 +99,7 @@ export default function ChooseRolePage() {
             Welcome
           </h1>
           <p className="text-white/70 text-lg">
-            Choose how you'd like to get started
+            Choose how you&apos;d like to get started
           </p>
         </div>
 
