@@ -84,22 +84,81 @@ export default function PianoLesson3() {
           </div>
         </section>
 
-        <section className="mb-16">
-          <h2 className="text-2xl text-white mb-4">4. Practice Routine</h2>
-          <ul className="list-disc list-inside text-slate-400 space-y-2 mb-6">
-            <li>Start one hand at a time.</li>
-            <li>Use a metronome at a comfortable slow speed.</li>
-            <li>Only increase tempo when every note sounds clean.</li>
-          </ul>
-          <div className="flex justify-center">
-            <div className="w-full max-w-3xl aspect-video rounded-xl border border-white/10 overflow-hidden">
-              <iframe
-                src="https://www.youtube.com/embed/83S8WfS_P_Y"
-                title="C Major Scale for Beginners"
-                allowFullScreen
-                className="w-full h-full rounded-xl"
-                style={{ minHeight: 315 }}
-              />
+        <section className="mb-12">
+          <h2 className="text-2xl text-white mb-4">4. Scale Theory & Patterns</h2>
+          <p className="text-slate-400 mb-6">
+            Understanding why scales work helps you learn them faster and adapt them to other keys.
+          </p>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-white/5 p-6 rounded-xl">
+              <h3 className="text-lg text-[#ff5a00] mb-3">Whole Steps & Half Steps</h3>
+              <p className="text-slate-400 text-sm mb-4">The C major scale uses this pattern:</p>
+              <div className="text-center text-[#ff5a00] font-mono">W-W-H-W-W-W-H</div>
+              <p className="text-slate-400 text-sm mt-2">W=Whole step, H=Half step</p>
+            </div>
+            <div className="bg-white/5 p-6 rounded-xl">
+              <h3 className="text-lg text-[#ff5a00] mb-3">Why C Major is Easiest</h3>
+              <p className="text-slate-400 text-sm">No black keys needed! This makes it perfect for beginners to focus on technique rather than note-finding.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-12 p-8 rounded-2xl bg-white/5 border border-white/10">
+          <h2 className="text-2xl text-white mb-4">5. Thumb Tuck Technique</h2>
+          <p className="text-slate-400 mb-6">
+            The thumb tuck is the most important technical skill in scale playing. Here's how to master it:
+          </p>
+          <div className="space-y-4">
+            <div className="bg-black/30 p-4 rounded-lg">
+              <h4 className="text-white font-medium mb-2">Step 1: Position</h4>
+              <p className="text-slate-400 text-sm">Place thumb on F, fingers 2-3-4 on G-A-B. Keep hand curved.</p>
+            </div>
+            <div className="bg-black/30 p-4 rounded-lg">
+              <h4 className="text-white font-medium mb-2">Step 2: Tuck</h4>
+              <p className="text-slate-400 text-sm">Quickly slide thumb under fingers to reach next C. Don't lift hand.</p>
+            </div>
+            <div className="bg-black/30 p-4 rounded-lg">
+              <h4 className="text-white font-medium mb-2">Step 3: Continue</h4>
+              <p className="text-slate-400 text-sm">Resume normal fingering pattern. Practice slowly until smooth.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl text-white mb-4">6. Hands-Together Practice</h2>
+          <p className="text-slate-400 mb-6">
+            Once each hand is comfortable alone, practice both hands together with these coordination tips.
+          </p>
+          <div className="grid md:grid-cols-3 gap-4">
+            <div className="bg-black/40 p-4 rounded-lg text-center">
+              <div className="text-[#ff5a00] font-mono text-lg mb-2">RH: 1-2-3</div>
+              <div className="text-slate-400 text-sm">Right hand plays C-D-E</div>
+            </div>
+            <div className="bg-black/40 p-4 rounded-lg text-center">
+              <div className="text-[#ff5a00] font-mono text-lg mb-2">LH: 5-4-3</div>
+              <div className="text-slate-400 text-sm">Left hand plays C-B-A</div>
+            </div>
+            <div className="bg-black/40 p-4 rounded-lg text-center">
+              <div className="text-[#ff5a00] font-mono text-lg mb-2">Together</div>
+              <div className="text-slate-400 text-sm">Both hands play simultaneously</div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl text-white mb-4">7. Common Scale Problems</h2>
+          <div className="space-y-3">
+            <div className="bg-red-900/20 border border-red-500/30 p-4 rounded-lg">
+              <h4 className="text-red-400 font-medium mb-1">Thumb Tuck Hesitation</h4>
+              <p className="text-slate-400 text-sm">Practice the tuck motion slowly. Speed comes from confidence, not rushing.</p>
+            </div>
+            <div className="bg-red-900/20 border border-red-500/30 p-4 rounded-lg">
+              <h4 className="text-red-400 font-medium mb-1">Uneven Rhythm</h4>
+              <p className="text-slate-400 text-sm">Use a metronome. Every note should be exactly the same duration.</p>
+            </div>
+            <div className="bg-red-900/20 border border-red-500/30 p-4 rounded-lg">
+              <h4 className="text-red-400 font-medium mb-1">Tension Buildup</h4>
+              <p className="text-slate-400 text-sm">Stop and shake out hands if you feel tension. Better to practice relaxed than fast.</p>
             </div>
           </div>
         </section>

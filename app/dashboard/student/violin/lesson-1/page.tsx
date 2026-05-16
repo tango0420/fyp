@@ -82,11 +82,98 @@ export default function ViolinLesson1() {
           <div className="bg-black/40 p-6 rounded-xl text-[#ff5a00] font-mono text-center">Tall posture • relaxed shoulders • level violin</div>
         </section>
 
-        <section className="mb-16">
-          <h2 className="text-2xl font-semibold text-white mb-4">4. Reference Video</h2>
-          <div className="flex justify-center">
-            <div className="w-full max-w-3xl aspect-video rounded-xl border border-white/10 overflow-hidden">
-              <iframe src="https://www.youtube.com/embed/Tnkhp6jLkMw" title="Violin posture lesson" allowFullScreen className="w-full h-full rounded-xl" style={{ minHeight: 315 }} />
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold text-white mb-4">4. Bow Hold Technique</h2>
+          <p className="text-slate-400 mb-6">
+            The bow hold is the foundation of all violin technique. Master it before playing.
+          </p>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-white/5 p-6 rounded-xl">
+              <h3 className="text-lg text-[#ff5a00] mb-3">Frog Position</h3>
+              <p className="text-slate-400 text-sm mb-4">Hold the frog (end) of the bow:</p>
+              <ul className="text-slate-400 text-sm space-y-1">
+                <li>• Thumb on underside</li>
+                <li>• Index finger on top</li>
+                <li>• Middle finger curved</li>
+                <li>• Ring and pinky relaxed</li>
+              </ul>
+            </div>
+            <div className="bg-white/5 p-6 rounded-xl">
+              <h3 className="text-lg text-[#ff5a00] mb-3">Stick Position</h3>
+              <p className="text-slate-400 text-sm mb-4">Bow parallel to bridge:</p>
+              <ul className="text-slate-400 text-sm space-y-1">
+                <li>• 45-degree angle to strings</li>
+                <li>• Weight distributed evenly</li>
+                <li>• Loose but controlled grip</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-12 p-8 rounded-2xl bg-white/5 border border-white/10">
+          <h2 className="text-2xl font-semibold text-white mb-4">5. First Sound Production</h2>
+          <p className="text-slate-400 mb-6">
+            Start with open strings to focus on bow technique before left-hand notes.
+          </p>
+          <div className="space-y-4">
+            <div className="bg-black/30 p-4 rounded-lg">
+              <h4 className="text-white font-medium mb-2">Bow Speed</h4>
+              <p className="text-slate-400 text-sm">Slow, steady bow strokes. Speed creates volume, not sound quality.</p>
+            </div>
+            <div className="bg-black/30 p-4 rounded-lg">
+              <h4 className="text-white font-medium mb-2">Contact Point</h4>
+              <p className="text-slate-400 text-sm">Bow hair should touch strings halfway between bridge and fingerboard.</p>
+            </div>
+            <div className="bg-black/30 p-4 rounded-lg">
+              <h4 className="text-white font-medium mb-2">Pressure</h4>
+              <p className="text-slate-400 text-sm">Light pressure creates clear tone. Heavy pressure creates scratchy sound.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold text-white mb-4">6. String Names & Tuning</h2>
+          <p className="text-slate-400 mb-6">
+            Learn the strings from lowest to highest pitch.
+          </p>
+          <div className="grid md:grid-cols-4 gap-4">
+            <div className="bg-black/40 p-4 rounded-lg text-center">
+              <h4 className="text-[#ff5a00] font-medium mb-2">G String</h4>
+              <p className="text-slate-400 text-sm">Lowest pitch</p>
+              <p className="text-slate-400 text-sm">Thickest string</p>
+            </div>
+            <div className="bg-black/40 p-4 rounded-lg text-center">
+              <h4 className="text-[#ff5a00] font-medium mb-2">D String</h4>
+              <p className="text-slate-400 text-sm">Second lowest</p>
+              <p className="text-slate-400 text-sm">Medium thickness</p>
+            </div>
+            <div className="bg-black/40 p-4 rounded-lg text-center">
+              <h4 className="text-[#ff5a00] font-medium mb-2">A String</h4>
+              <p className="text-slate-400 text-sm">Third highest</p>
+              <p className="text-slate-400 text-sm">Medium thin</p>
+            </div>
+            <div className="bg-black/40 p-4 rounded-lg text-center">
+              <h4 className="text-[#ff5a00] font-medium mb-2">E String</h4>
+              <p className="text-slate-400 text-sm">Highest pitch</p>
+              <p className="text-slate-400 text-sm">Thinnest string</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold text-white mb-4">7. Common Setup Mistakes</h2>
+          <div className="space-y-3">
+            <div className="bg-red-900/20 border border-red-500/30 p-4 rounded-lg">
+              <h4 className="text-red-400 font-medium mb-1">Chin Rest Too High</h4>
+              <p className="text-slate-400 text-sm">Violin should be level. High chin rest causes neck strain and poor tone.</p>
+            </div>
+            <div className="bg-red-900/20 border border-red-500/30 p-4 rounded-lg">
+              <h4 className="text-red-400 font-medium mb-1">Shoulder Rest Issues</h4>
+              <p className="text-slate-400 text-sm">Shoulder rest should fill the gap naturally. Wrong height causes tension.</p>
+            </div>
+            <div className="bg-red-900/20 border border-red-500/30 p-4 rounded-lg">
+              <h4 className="text-red-400 font-medium mb-1">Bow Angle Wrong</h4>
+              <p className="text-slate-400 text-sm">Bow should be parallel to bridge. Wrong angle creates uneven sound.</p>
             </div>
           </div>
         </section>

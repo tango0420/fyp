@@ -22,6 +22,11 @@ export default function BookTutorPage() {
   });
   const [submitted, setSubmitted] = useState(false);
 
+  // Debug: Log session whenever it changes
+  useEffect(() => {
+    console.log("🔐 Session updated:", session);
+  }, [session]);
+
   useEffect(() => {
     fetch("/api/all-teachers")
       .then(res => res.json())
@@ -53,23 +58,45 @@ export default function BookTutorPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!tutorInfo) return;
-    const studentId = session?.user?.email || '';
+    const studentEmail = session?.user?.email || '';
     const studentName = session?.user?.name || '';
+    
+    console.log("Session data:", session);
+    console.log("Student Email:", studentEmail);
+    console.log("Student Name:", studentName);
+    
+    if (!studentEmail) {
+      alert("Error: Could not get your email. Please log in again.");
+      return;
+    }
+    
+    const bookingPayload = {
+      studentEmail,
+      studentName,
+      tutorId: tutorInfo.userId,
+      tutorName: tutorInfo.name,
+      message: booking.message,
+      time: booking.time,
+      contactNumber: booking.contactNumber,
+      social: booking.social
+    };
+    
+    console.log("Sending booking payload:", bookingPayload);
+    
     const res = await fetch('/api/book-tutor', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        studentId,
-        studentName,
-        tutorId: tutorInfo.userId,
-        tutorName: tutorInfo.name,
-        message: booking.message,
-        time: booking.time,
-        contactNumber: booking.contactNumber,
-        social: booking.social
-      })
+      body: JSON.stringify(bookingPayload)
     });
-    if (res.ok) setSubmitted(true);
+    
+    const data = await res.json();
+    console.log("Booking response:", data);
+    
+    if (res.ok) {
+      setSubmitted(true);
+    } else {
+      alert(`Error: ${data.error || "Failed to submit booking"}`);
+    }
   };
 
   return (
@@ -103,7 +130,15 @@ export default function BookTutorPage() {
                     <p className="text-slate-500">The instructor has been notified of your interest.</p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-10">
+                  <>
+                    {/* Email Info Box */}
+                    <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4 mb-8">
+                      <p className="text-xs text-blue-300 uppercase tracking-wide font-semibold mb-1">Booking will be sent from:</p>
+                      <p className="text-white font-mono">{session?.user?.email || "Loading..."}</p>
+                      <p className="text-xs text-blue-400 mt-2">The teacher will use this email to contact you about your lesson.</p>
+                    </div>
+                    
+                    <form onSubmit={handleSubmit} className="space-y-10">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                       <div className="space-y-2">
                         <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Date & Time</label>
@@ -147,6 +182,7 @@ export default function BookTutorPage() {
                       Finalize Booking <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
                     </button>
                   </form>
+                  </>
                 )}
               </div>
             ) : null}

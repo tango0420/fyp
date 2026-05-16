@@ -99,22 +99,71 @@ export default function PianoLesson2() {
           </ul>
         </section>
 
-        <section className="mb-16">
-          <h2 className="text-2xl font-semibold text-white mb-4">4. Reference Video</h2>
-          <div className="flex justify-center">
-            <div className="w-full max-w-3xl aspect-video rounded-xl border border-white/10 overflow-hidden">
-              <iframe
-                src="https://www.youtube.com/embed/3uun_S_vXvE"
-                title="Piano Hand Posture"
-                allowFullScreen
-                className="w-full h-full rounded-xl"
-                style={{ minHeight: 315 }}
-              />
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold text-white mb-4">4. Finger Independence Drills</h2>
+          <p className="text-slate-400 mb-6">
+            Practice these exercises to develop control over each finger individually.
+          </p>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-white/5 p-6 rounded-xl">
+              <h3 className="text-lg text-[#ff5a00] mb-3">Finger Lifts</h3>
+              <p className="text-slate-400 text-sm mb-4">Place all fingers on the keys. Lift each finger one by one while keeping others down.</p>
+              <div className="text-center text-[#ff5a00] font-mono">1→2→3→4→5 → 5→4→3→2→1</div>
+            </div>
+            <div className="bg-white/5 p-6 rounded-xl">
+              <h3 className="text-lg text-[#ff5a00] mb-3">Strength Building</h3>
+              <p className="text-slate-400 text-sm mb-4">Press each key firmly but smoothly. Feel the resistance and release.</p>
+              <div className="text-center text-[#ff5a00] font-mono">Slow & Controlled</div>
             </div>
           </div>
-          <p className="text-sm text-slate-400 text-center max-w-2xl mx-auto mt-6">
-            Watch how the hand stays rounded and balanced even while each finger moves independently.
+        </section>
+
+        <section className="mb-12 p-8 rounded-2xl bg-white/5 border border-white/10">
+          <h2 className="text-2xl font-semibold text-white mb-4">5. Common Mistakes to Avoid</h2>
+          <div className="space-y-4">
+            <div className="flex items-start gap-3">
+              <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+              <div>
+                <h4 className="text-white font-medium">Flat Fingers</h4>
+                <p className="text-slate-400 text-sm">Keep fingers curved like holding grapes. Flat fingers create tension and poor tone.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+              <div>
+                <h4 className="text-white font-medium">Wrist Tension</h4>
+                <p className="text-slate-400 text-sm">Let wrists float naturally. Rigid wrists prevent smooth finger movement.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+              <div>
+                <h4 className="text-white font-medium">Thumb Problems</h4>
+                <p className="text-slate-400 text-sm">Don't let the thumb collapse inward. Keep it strong and aligned with other fingers.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold text-white mb-4">6. Progressive Practice Method</h2>
+          <p className="text-slate-400 mb-6">
+            Use this systematic approach to build technique gradually.
           </p>
+          <div className="space-y-4">
+            <div className="bg-black/30 p-4 rounded-lg border-l-4 border-[#ff5a00]">
+              <h4 className="text-white font-medium mb-2">Week 1: Foundation</h4>
+              <p className="text-slate-400 text-sm">Practice hand shape and finger numbers. Play slowly with perfect form.</p>
+            </div>
+            <div className="bg-black/30 p-4 rounded-lg border-l-4 border-[#ff5a00]">
+              <h4 className="text-white font-medium mb-2">Week 2: Control</h4>
+              <p className="text-slate-400 text-sm">Add finger independence exercises. Focus on even tone and smooth motion.</p>
+            </div>
+            <div className="bg-black/30 p-4 rounded-lg border-l-4 border-[#ff5a00]">
+              <h4 className="text-white font-medium mb-2">Week 3: Speed</h4>
+              <p className="text-slate-400 text-sm">Gradually increase tempo while maintaining relaxation and accuracy.</p>
+            </div>
+          </div>
         </section>
 
         <div className="flex items-center justify-between pt-6 border-t border-white/10 mb-4">

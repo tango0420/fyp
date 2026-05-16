@@ -38,6 +38,22 @@ const guitarLessons = [
     videoUrl: "https://www.youtube.com/watch?v=2wZ1pI_2GNs",
     thumbnail: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=800"
   },
+  {
+    title: "The Pentatonic Scale",
+    description: "The minor pentatonic scale is the most used scale in rock, blues, and pop guitar. Learn it in first position and you can start improvising immediately.",
+    difficulty: "Beginner",
+    duration: "15 min",
+    videoUrl: "https://www.youtube.com/watch?v=iE5ioxhATpk",
+    thumbnail: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?q=80&w=800"
+  },
+  {
+    title: "First Song Performance",
+    description: "Everything you've learned — chords, strumming, switching, and scale awareness — comes together in a complete musical performance.",
+    difficulty: "Beginner",
+    duration: "20 min",
+    videoUrl: "https://www.youtube.com/watch?v=2wZ1pI_2GNs",
+    thumbnail: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=800"
+  },
 ];
 
 type LessonProgress = {
@@ -215,6 +231,20 @@ export default function GuitarLessonsPage() {
                   ) : idx === 3 ? (
                     <Link
                       href="/dashboard/student/guitar/lesson-4"
+                      className="w-full md:w-auto px-12 py-5 rounded-full border border-white/10 text-white text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center justify-center gap-3 group/btn"
+                    >
+                      {isLessonCompleted(idx) ? "Review Lesson" : "Start Lesson"} <ChevronRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
+                    </Link>
+                  ) : idx === 4 ? (
+                    <Link
+                      href="/dashboard/student/guitar/lesson-5"
+                      className="w-full md:w-auto px-12 py-5 rounded-full border border-white/10 text-white text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center justify-center gap-3 group/btn"
+                    >
+                      {isLessonCompleted(idx) ? "Review Lesson" : "Start Lesson"} <ChevronRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
+                    </Link>
+                  ) : idx === 5 ? (
+                    <Link
+                      href="/dashboard/student/guitar/lesson-6"
                       className="w-full md:w-auto px-12 py-5 rounded-full border border-white/10 text-white text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center justify-center gap-3 group/btn"
                     >
                       {isLessonCompleted(idx) ? "Review Lesson" : "Start Lesson"} <ChevronRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />

@@ -147,16 +147,85 @@ export default function PianoLesson4() {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl text-white mb-4">3. Video Reference</h2>
-          <div className="flex justify-center">
-            <div className="w-full max-w-3xl aspect-video rounded-xl border border-white/10 overflow-hidden">
-              <iframe
-                src="https://www.youtube.com/embed/Yp69Y6pQnSc"
-                title="Piano Chords for Beginners"
-                allowFullScreen
-                className="w-full h-full rounded-xl"
-                style={{ minHeight: 315 }}
-              />
+          <h2 className="text-2xl text-white mb-4">3. Chord Construction Theory</h2>
+          <p className="text-slate-400 mb-6">
+            Understanding how chords are built helps you create them in any key.
+          </p>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-white/5 p-6 rounded-xl">
+              <h3 className="text-lg text-[#ff5a00] mb-3">Major Triad Formula</h3>
+              <p className="text-slate-400 text-sm mb-4">Root + Major 3rd + Perfect 5th</p>
+              <div className="text-center text-[#ff5a00] font-mono">1 - 3 - 5</div>
+              <p className="text-slate-400 text-sm mt-2">Example: C + E + G = C Major</p>
+            </div>
+            <div className="bg-white/5 p-6 rounded-xl">
+              <h3 className="text-lg text-[#ff5a00] mb-3">Minor Triad Formula</h3>
+              <p className="text-slate-400 text-sm mb-4">Root + Minor 3rd + Perfect 5th</p>
+              <div className="text-center text-[#ff5a00] font-mono">1 - ♭3 - 5</div>
+              <p className="text-slate-400 text-sm mt-2">Example: A + C + E = A Minor</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-12 p-8 rounded-2xl bg-white/5 border border-white/10">
+          <h2 className="text-2xl text-white mb-4">4. Voice Leading & Smooth Transitions</h2>
+          <p className="text-slate-400 mb-6">
+            The key to professional-sounding chord progressions is minimizing movement between chords.
+          </p>
+          <div className="space-y-4">
+            <div className="bg-black/30 p-4 rounded-lg">
+              <h4 className="text-white font-medium mb-2">Common Tone Connections</h4>
+              <p className="text-slate-400 text-sm">C Major (C-E-G) to F Major (F-A-C): The C note stays the same!</p>
+            </div>
+            <div className="bg-black/30 p-4 rounded-lg">
+              <h4 className="text-white font-medium mb-2">Inversions</h4>
+              <p className="text-slate-400 text-sm">Rearrange chord notes to create smoother bass lines. Try F Major as F-C-A instead of F-A-C.</p>
+            </div>
+            <div className="bg-black/30 p-4 rounded-lg">
+              <h4 className="text-white font-medium mb-2">Finger Preparation</h4>
+              <p className="text-slate-400 text-sm">Position fingers for the next chord while holding the current one. This eliminates pauses.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl text-white mb-4">5. Harmonic Rhythm Practice</h2>
+          <p className="text-slate-400 mb-6">
+            Experiment with different ways to play the same progression.
+          </p>
+          <div className="grid md:grid-cols-3 gap-4">
+            <div className="bg-black/40 p-4 rounded-lg text-center">
+              <h4 className="text-[#ff5a00] font-medium mb-2">Block Chords</h4>
+              <p className="text-slate-400 text-sm">Play all notes simultaneously</p>
+              <div className="text-[#ff5a00] font-mono text-sm mt-2">[C-E-G]</div>
+            </div>
+            <div className="bg-black/40 p-4 rounded-lg text-center">
+              <h4 className="text-[#ff5a00] font-medium mb-2">Broken Chords</h4>
+              <p className="text-slate-400 text-sm">Play notes one at a time</p>
+              <div className="text-[#ff5a00] font-mono text-sm mt-2">C→E→G</div>
+            </div>
+            <div className="bg-black/40 p-4 rounded-lg text-center">
+              <h4 className="text-[#ff5a00] font-medium mb-2">Alberti Bass</h4>
+              <p className="text-slate-400 text-sm">Root, fifth, third, fifth pattern</p>
+              <div className="text-[#ff5a00] font-mono text-sm mt-2">C-G-E-G</div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl text-white mb-4">6. Chord Progressions to Explore</h2>
+          <div className="space-y-3">
+            <div className="bg-white/5 p-4 rounded-lg">
+              <h4 className="text-white font-medium mb-2">I - IV - V Progression</h4>
+              <p className="text-slate-400 text-sm">C - F - G - C. This is the foundation of countless pop songs.</p>
+            </div>
+            <div className="bg-white/5 p-4 rounded-lg">
+              <h4 className="text-white font-medium mb-2">I - vi - IV - V</h4>
+              <p className="text-slate-400 text-sm">C - Am - F - G. The "four-chord song" that works in any key.</p>
+            </div>
+            <div className="bg-white/5 p-4 rounded-lg">
+              <h4 className="text-white font-medium mb-2">ii - V - I</h4>
+              <p className="text-slate-400 text-sm">Dm - G - C. The most common jazz progression.</p>
             </div>
           </div>
         </section>

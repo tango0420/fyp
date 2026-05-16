@@ -41,9 +41,12 @@ export default function StudentSidebar() {
         >
           <Volume2 size={22} />
         </Link>
-        <button className="hover:text-[#ff5a00] transition-colors cursor-pointer inline-flex items-center justify-center text-slate-500">
+        <Link 
+          href="/dashboard/student/setting" 
+          className={`hover:text-[#ff5a00] transition-colors inline-flex items-center justify-center ${isActive("/dashboard/student/setting") ? "text-[#ff5a00]" : "text-slate-500"}`}
+        >
           <Settings size={22} />
-        </button>
+        </Link>
       </nav>
     </aside>
   );

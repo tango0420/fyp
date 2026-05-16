@@ -84,22 +84,95 @@ export default function DrumLesson2() {
           </div>
         </section>
 
-        <section className="mb-16">
-          <h2 className="text-2xl text-white mb-4">4. Practice Routine</h2>
-          <ul className="list-disc list-inside text-slate-400 space-y-2 mb-6">
-            <li>Set a metronome to 60 BPM.</li>
-            <li>Play the groove for 2 minutes without stopping.</li>
-            <li>Only raise the tempo when the beat feels relaxed and even.</li>
-          </ul>
-          <div className="flex justify-center">
-            <div className="w-full max-w-3xl aspect-video rounded-xl border border-white/10 overflow-hidden">
-              <iframe
-                src="https://www.youtube.com/embed/wI5hf6vJVEs"
-                title="Basic 4/4 Drum Beat"
-                allowFullScreen
-                className="w-full h-full rounded-xl"
-                style={{ minHeight: 315 }}
-              />
+        <section className="mb-12">
+          <h2 className="text-2xl text-white mb-4">4. Groove Development Techniques</h2>
+          <p className="text-slate-400 mb-6">
+            Build your groove systematically to ensure solid timekeeping.
+          </p>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-white/5 p-6 rounded-xl">
+              <h3 className="text-lg text-[#ff5a00] mb-3">Layer Method</h3>
+              <p className="text-slate-400 text-sm mb-4">Add elements one at a time:</p>
+              <ol className="text-slate-400 text-sm space-y-1 list-decimal list-inside">
+                <li>Hi-hat alone</li>
+                <li>Add snare on 2 & 4</li>
+                <li>Add kick on 1 & 3</li>
+                <li>Play all together</li>
+              </ol>
+            </div>
+            <div className="bg-white/5 p-6 rounded-xl">
+              <h3 className="text-lg text-[#ff5a00] mb-3">Subdivision Awareness</h3>
+              <p className="text-slate-400 text-sm mb-4">Feel the eighth notes:</p>
+              <div className="text-center text-[#ff5a00] font-mono">1 & 2 & 3 & 4 &</div>
+              <p className="text-slate-400 text-sm mt-2">Hi-hat plays every &</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-12 p-8 rounded-2xl bg-white/5 border border-white/10">
+          <h2 className="text-2xl text-white mb-4">5. Dynamics & Feel</h2>
+          <p className="text-slate-400 mb-6">
+            The same notes with different emphasis create different grooves.
+          </p>
+          <div className="space-y-4">
+            <div className="bg-black/30 p-4 rounded-lg">
+              <h4 className="text-white font-medium mb-2">Ghost Notes</h4>
+              <p className="text-slate-400 text-sm">Very soft snare hits between main beats add groove and feel.</p>
+            </div>
+            <div className="bg-black/30 p-4 rounded-lg">
+              <h4 className="text-white font-medium mb-2">Accent Patterns</h4>
+              <p className="text-slate-400 text-sm">Vary the volume: loud snare on 2, soft on 4, or vice versa.</p>
+            </div>
+            <div className="bg-black/30 p-4 rounded-lg">
+              <h4 className="text-white font-medium mb-2">Hi-Hat Variations</h4>
+              <p className="text-slate-400 text-sm">Open hi-hat on beat 4, closed on others. Or alternate open/closed.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl text-white mb-4">6. Tempo Progression</h2>
+          <p className="text-slate-400 mb-6">
+            Build speed gradually while maintaining groove quality.
+          </p>
+          <div className="grid md:grid-cols-4 gap-4">
+            <div className="bg-black/40 p-4 rounded-lg text-center">
+              <h4 className="text-[#ff5a00] font-medium mb-2">Week 1</h4>
+              <p className="text-slate-400 text-sm">60 BPM</p>
+              <p className="text-slate-400 text-xs">Focus on steadiness</p>
+            </div>
+            <div className="bg-black/40 p-4 rounded-lg text-center">
+              <h4 className="text-[#ff5a00] font-medium mb-2">Week 2</h4>
+              <p className="text-slate-400 text-sm">70 BPM</p>
+              <p className="text-slate-400 text-xs">Add dynamics</p>
+            </div>
+            <div className="bg-black/40 p-4 rounded-lg text-center">
+              <h4 className="text-[#ff5a00] font-medium mb-2">Week 3</h4>
+              <p className="text-slate-400 text-sm">80 BPM</p>
+              <p className="text-slate-400 text-xs">Refine feel</p>
+            </div>
+            <div className="bg-black/40 p-4 rounded-lg text-center">
+              <h4 className="text-[#ff5a00] font-medium mb-2">Week 4</h4>
+              <p className="text-slate-400 text-sm">90 BPM</p>
+              <p className="text-slate-400 text-xs">Performance ready</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl text-white mb-4">7. Groove Variations</h2>
+          <div className="space-y-3">
+            <div className="bg-white/5 p-4 rounded-lg">
+              <h4 className="text-white font-medium mb-2">Half-Time Feel</h4>
+              <p className="text-slate-400 text-sm">Play kick on 1 only, snare on 2 only. Creates a slower, heavier groove.</p>
+            </div>
+            <div className="bg-white/5 p-4 rounded-lg">
+              <h4 className="text-white font-medium mb-2">Double-Time Feel</h4>
+              <p className="text-slate-400 text-sm">Add kick on & of 2 and 4. Creates energy and drive.</p>
+            </div>
+            <div className="bg-white/5 p-4 rounded-lg">
+              <h4 className="text-white font-medium mb-2">Shuffle Groove</h4>
+              <p className="text-slate-400 text-sm">Triplet feel: play snare on 2 and 4, but anticipate slightly early.</p>
             </div>
           </div>
         </section>

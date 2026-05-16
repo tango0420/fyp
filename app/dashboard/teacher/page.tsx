@@ -22,7 +22,100 @@ export default function TeacherDashboard() {
   const [tab, setTab] = useState<'sessions' | 'review' | 'edit'>('sessions');
   const [audioUploads, setAudioUploads] = useState<any[]>([]);
   const [requests, setRequests] = useState<any[]>([]);
+  const [processingId, setProcessingId] = useState<string | null>(null);
+  const [showRejectModal, setShowRejectModal] = useState(false);
+  const [selectedRequest, setSelectedRequest] = useState<any>(null);
+  const [rejectReason, setRejectReason] = useState("");
   const router = useRouter();
+
+  const handleAcceptRequest = async (request: any) => {
+    setProcessingId(request._id);
+    console.log("Accepting request:", request);
+    
+    try {
+      // Validate required data exists
+      if (!request.studentEmail) {
+        alert("Error: Student email is missing from booking");
+        setProcessingId(null);
+        return;
+      }
+      
+      const response = await fetch("/api/teacher/booking-response", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          bookingId: request._id,
+          action: "accept",
+          studentEmail: request.studentEmail,
+          studentName: request.studentName || "Student",
+          teacherName: teacherInfo.name,
+          lessonTime: request.time ? new Date(request.time).toLocaleString() : null,
+        }),
+      });
+
+      const data = await response.json();
+      
+      if (response.ok) {
+        setRequests(requests.filter(r => r._id !== request._id));
+        alert("✓ Request accepted! Email sent to student.");
+      } else {
+        console.error("API error:", data);
+        alert(`Failed to accept request: ${data.error || "Unknown error"}`);
+      }
+    } catch (error) {
+      console.error("Error accepting request:", error);
+      alert("Error accepting request: " + (error as Error).message);
+    } finally {
+      setProcessingId(null);
+    }
+  };
+
+  const handleRejectRequest = async () => {
+    if (!selectedRequest) return;
+    
+    console.log("Rejecting request:", selectedRequest);
+    
+    setProcessingId(selectedRequest._id);
+    try {
+      // Validate required data exists
+      if (!selectedRequest.studentEmail) {
+        alert("Error: Student email is missing from booking");
+        setProcessingId(null);
+        return;
+      }
+
+      const response = await fetch("/api/teacher/booking-response", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          bookingId: selectedRequest._id,
+          action: "reject",
+          reason: rejectReason || "Unavailable at this time",
+          studentEmail: selectedRequest.studentEmail,
+          studentName: selectedRequest.studentName || "Student",
+          teacherName: teacherInfo.name,
+        }),
+      });
+
+      const data = await response.json();
+      
+      if (response.ok) {
+        setRequests(requests.filter(r => r._id !== selectedRequest._id));
+        setShowRejectModal(false);
+        setRejectReason("");
+        setSelectedRequest(null);
+        alert("✓ Request rejected! Email sent to student.");
+      } else {
+        console.error("API error:", data);
+        alert(`Failed to reject request: ${data.error || "Unknown error"}`);
+      }
+    } catch (error) {
+      console.error("Error rejecting request:", error);
+      alert("Error rejecting request: " + (error as Error).message);
+    } finally {
+      setProcessingId(null);
+    }
+  };
 
   useEffect(() => {
     if (status === "authenticated" && session?.user?.email) {
@@ -119,21 +212,38 @@ export default function TeacherDashboard() {
               {requests.length > 0 ? (
                 <div className="divide-y divide-white/5">
                   {requests.map((req: any, idx: number) => (
-                    <div key={idx} className="p-4 flex flex-col md:flex-row md:items-center justify-between hover:bg-white/[0.02] transition-colors gap-2 md:gap-0">
-                      <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-lg bg-[#ff5a00]/10 text-[#ff5a00] flex items-center justify-center font-bold">
+                    <div key={idx} className="p-4 flex flex-col md:flex-row md:items-center justify-between hover:bg-white/[0.02] transition-colors gap-4 md:gap-0">
+                      <div className="flex items-center gap-4 flex-1">
+                        <div className="w-10 h-10 rounded-lg bg-[#ff5a00]/10 text-[#ff5a00] flex items-center justify-center font-bold flex-shrink-0">
                           {req.studentName?.charAt(0) || "S"}
                         </div>
-                        <div>
-                          <p className="text-white font-bold text-lg mb-1">{req.studentName || "Student"}</p>
+                        <div className="flex-1">
+                          <p className="text-white font-bold text-sm md:text-base mb-1">{req.studentName || "Student"}</p>
                           <p className="text-xs text-slate-500 uppercase tracking-wide">{req.time ? new Date(req.time).toLocaleString() : "No time set"}</p>
+                          <p className="text-xs text-slate-400 mt-1">Email: {req.studentEmail}</p>
                           <p className="text-xs text-slate-400">Contact: {req.contactNumber}</p>
-                          <p className="text-xs text-slate-400">Message: {req.message}</p>
+                          {req.message && <p className="text-xs text-slate-400 mt-1">Message: {req.message}</p>}
                         </div>
                       </div>
-                      <button className="px-4 py-2 bg-white text-black text-sm font-semibold rounded-lg hover:bg-[#ff5a00] hover:text-white transition-all">
-                        Accept Request
-                      </button>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => handleAcceptRequest(req)}
+                          disabled={processingId === req._id}
+                          className="px-4 py-2 bg-[#ff5a00] hover:bg-[#e65100] text-white text-sm font-semibold rounded-lg transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                        >
+                          {processingId === req._id ? "..." : "Accept"}
+                        </button>
+                        <button
+                          onClick={() => {
+                            setSelectedRequest(req);
+                            setShowRejectModal(true);
+                          }}
+                          disabled={processingId === req._id}
+                          className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white text-sm font-semibold rounded-lg transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                        >
+                          {processingId === req._id ? "..." : "Reject"}
+                        </button>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -186,11 +296,54 @@ export default function TeacherDashboard() {
 
         </div>
       </main>
+
+      {/* REJECT MODAL */}
+      {showRejectModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-[#161920] border border-white/10 rounded-xl p-6 max-w-md w-full">
+            <h3 className="text-xl font-bold text-white mb-4">Reject Request</h3>
+            <p className="text-slate-400 text-sm mb-4">
+              Are you sure you want to reject this request from <strong>{selectedRequest?.studentName}</strong>?
+            </p>
+            
+            <div className="mb-4">
+              <label className="block text-xs font-semibold text-slate-500 uppercase mb-2">Reason (Optional)</label>
+              <textarea
+                value={rejectReason}
+                onChange={(e) => setRejectReason(e.target.value)}
+                placeholder="e.g., Fully booked, scheduling conflict, etc."
+                className="w-full bg-[#0f1115] border border-white/10 rounded-lg p-3 text-sm text-slate-300 focus:border-[#ff5a00] focus:ring-1 focus:ring-[#ff5a00] outline-none transition-all resize-none"
+                rows={3}
+              />
+            </div>
+
+            <div className="flex gap-3">
+              <button
+                onClick={() => {
+                  setShowRejectModal(false);
+                  setSelectedRequest(null);
+                  setRejectReason("");
+                }}
+                className="flex-1 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors font-medium text-sm"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleRejectRequest}
+                disabled={processingId !== null}
+                className="flex-1 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors font-medium text-sm disabled:opacity-60"
+              >
+                {processingId ? "Sending..." : "Confirm Rejection"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
-function AudioReviewCard({ audio, teacherInfo }) {
+function AudioReviewCard({ audio, teacherInfo }: { audio: any; teacherInfo: any }) {
   const [feedback, setFeedback] = React.useState("");
   const [submitting, setSubmitting] = React.useState(false);
   const [success, setSuccess] = React.useState(false);

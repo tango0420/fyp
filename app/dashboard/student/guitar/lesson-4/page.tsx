@@ -10,10 +10,12 @@ export default function Lesson4() {
   const [audioURL, setAudioURL] = useState<string | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
+  const streamRef = useRef<MediaStream | null>(null);
   const [progress, setProgress] = useState(0);
   const [progressPercent, setProgressPercent] = useState(0);
   const [uploading, setUploading] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
+  const [recordingError, setRecordingError] = useState<string | null>(null);
 
   const { data: session, status } = useSession();
 
@@ -29,29 +31,82 @@ export default function Lesson4() {
   }, [status, session]);
 
   const startRecording = async () => {
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    mediaRecorderRef.current = new MediaRecorder(stream);
-    audioChunksRef.current = [];
+    try {
+      setRecordingError(null);
+      
+      // Stop existing stream if any
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach(track => track.stop());
+      }
 
-    mediaRecorderRef.current.ondataavailable = (e) => {
-      audioChunksRef.current.push(e.data);
-    };
+      // Check browser support
+      const mediaDevices = navigator.mediaDevices;
+      if (!mediaDevices || !mediaDevices.getUserMedia) {
+        setRecordingError("Your browser doesn't support audio recording. Please use Chrome, Firefox, Edge, or Safari.");
+        return;
+      }
 
-    mediaRecorderRef.current.onstop = () => {
-      const audioBlob = new Blob(audioChunksRef.current, { type: "audio/wav" });
-      const url = URL.createObjectURL(audioBlob);
-      setAudioURL(url);
-      setUploadSuccess(false); // Reset upload state on new recording
-    };
+      // Request microphone with relaxed constraints
+      const stream = await navigator.mediaDevices.getUserMedia({ 
+        audio: true
+      }).catch(async (err) => {
+        // Retry with more relaxed constraints
+        return navigator.mediaDevices.getUserMedia({
+          audio: {
+            echoCancellation: false,
+            noiseSuppression: false,
+            autoGainControl: false
+          }
+        });
+      });
+      
+      streamRef.current = stream;
+      mediaRecorderRef.current = new MediaRecorder(stream);
+      audioChunksRef.current = [];
 
-    mediaRecorderRef.current.start();
-    setRecording(true);
+      mediaRecorderRef.current.ondataavailable = (e) => {
+        audioChunksRef.current.push(e.data);
+      };
+
+      mediaRecorderRef.current.onstop = () => {
+        const audioBlob = new Blob(audioChunksRef.current, { type: "audio/wav" });
+        const url = URL.createObjectURL(audioBlob);
+        setAudioURL(url);
+        setUploadSuccess(false);
+      };
+
+      mediaRecorderRef.current.start();
+      setRecording(true);
+      setRecordingError(null);
+    } catch (err) {
+      const error = err as Error & { name: string };
+      
+      if (error.name === "NotAllowedError") {
+        setRecordingError("Microphone permission denied. Please allow microphone access in your browser settings and try again.");
+      } else if (error.name === "NotFoundError" || error.name === "DeviceNotFoundError") {
+        setRecordingError("No microphone found. Please check that a microphone is connected.");
+      } else if (error.name === "NotReadableError") {
+        setRecordingError("Microphone is in use or unavailable. Please close other apps using the microphone and try again.");
+      } else if (error.name === "SecurityError") {
+        setRecordingError("This page must be served over HTTPS to record audio. Please use a secure connection.");
+      } else {
+        setRecordingError(`Microphone error: ${error.message || "Could not access microphone. Please try again."}`);
+      }
+      setRecording(false);
+    }
   };
 
   const stopRecording = () => {
-    if (mediaRecorderRef.current) {
+    if (mediaRecorderRef.current && mediaRecorderRef.current.state === "recording") {
       mediaRecorderRef.current.stop();
     }
+    
+    // Stop all audio tracks
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach(track => track.stop());
+      streamRef.current = null;
+    }
+    
     setRecording(false);
   };
 
@@ -67,6 +122,13 @@ export default function Lesson4() {
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setProgress(0);
+    
+    // Cleanup on unmount
+    return () => {
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach(track => track.stop());
+      }
+    };
   }, []);
 
   const markLessonComplete = async () => {
@@ -194,17 +256,32 @@ export default function Lesson4() {
             {recording ? (
               <button
                 onClick={stopRecording}
-                className="px-6 py-2 rounded-full bg-gray-800 text-white font-semibold hover:bg-gray-700 transition-all"
+                className="px-6 py-2 rounded-full bg-red-600 text-white font-semibold hover:bg-red-700 transition-all"
               >
                 Stop Recording
               </button>
             ) : (
               <button
                 onClick={startRecording}
-                className="px-6 py-2 rounded-full bg-gray-900 text-white font-semibold hover:bg-gray-800 transition-all"
+                className="px-6 py-2 rounded-full bg-[#ff5a00] text-white font-semibold hover:bg-[#ff5a00]/90 transition-all"
               >
                 Start Recording
               </button>
+            )}
+
+            {recordingError && (
+              <div className="bg-red-900/30 border border-red-500/50 rounded-lg p-4 max-w-lg text-red-300 text-sm space-y-3">
+                <p>{recordingError}</p>
+                <button
+                  onClick={() => {
+                    setRecordingError(null);
+                    startRecording();
+                  }}
+                  className="px-4 py-1 bg-red-600 hover:bg-red-700 rounded text-white text-xs font-semibold transition-all"
+                >
+                  Retry
+                </button>
+              </div>
             )}
 
             {audioURL && (
@@ -219,13 +296,13 @@ export default function Lesson4() {
           <div className="flex flex-col items-center mt-4 gap-2">
             <button
               onClick={handleSendForReview}
-              className="px-6 py-2 rounded-full bg-gray-900 text-white text-sm font-semibold hover:bg-gray-800 transition-all disabled:opacity-60"
+              className="px-6 py-2 rounded-full bg-[#ff5a00] text-white text-sm font-semibold hover:bg-[#ff5a00]/90 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
               disabled={!audioURL || uploading}
             >
               {uploading ? "Sending..." : "Send for Review"}
             </button>
             {uploadSuccess && (
-              <span className="text-green-400 text-sm mt-1">Audio sent successfully for review!</span>
+              <span className="text-green-400 text-sm mt-1">✓ Audio sent successfully for review!</span>
             )}
           </div>
         </section>

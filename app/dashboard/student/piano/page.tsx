@@ -25,7 +25,7 @@ const pianoLessons = [
     difficulty: "Beginner",
     duration: "15 min",
     videoUrl: "https://www.youtube.com/watch?v=3uun_S_vXvE",
-    thumbnail: "https://images.unsplash.com/photo-1520529611473-d58ff3ef485c?q=80&w=800"
+    thumbnail: "https://i.pinimg.com/736x/b3/46/6b/b3466b35ad291880945a8f3f9f39359d.jpg"
   },
   {
     title: "The C Major Scale",
@@ -33,7 +33,7 @@ const pianoLessons = [
     difficulty: "Beginner",
     duration: "18 min",
     videoUrl: "https://www.youtube.com/watch?v=83S8WfS_P_Y",
-    thumbnail: "https://images.unsplash.com/photo-1598461163750-6839352e825a?q=80&w=800"
+    thumbnail: "https://i.pinimg.com/1200x/2c/60/84/2c6084871f12ef660645ca361bd010a0.jpg"
   },
   {
     title: "Basic Triads & Chords",
@@ -41,7 +41,7 @@ const pianoLessons = [
     difficulty: "Beginner",
     duration: "22 min",
     videoUrl: "https://www.youtube.com/watch?v=Yp69Y6pQnSc",
-    thumbnail: "https://images.unsplash.com/photo-1629230557245-095874251785?q=80&w=800"
+    thumbnail: "https://i.pinimg.com/736x/e7/cd/87/e7cd87443e7ec289a5e9bb4fd1c5d151.jpg"
   },
 ];
 
@@ -94,7 +94,7 @@ export default function PianoDashboard() {
         {/* Cinematic Piano Header */}
         <section className="relative h-[65vh] min-h-[500px] bg-[#111] overflow-hidden group flex flex-col justify-center border-b border-white/5">
           <img 
-            src="https://images.unsplash.com/photo-1520529611473-d58ff3ef485c?q=80&w=2400" 
+            src="https://i.pinimg.com/736x/7d/14/75/7d14752a3a49a938ed6afdcb4ecbd0d4.jpg" 
             className="absolute inset-0 w-full h-full object-cover opacity-25 transition-transform duration-1000 group-hover:scale-105"
             alt="Piano Keys"
           />

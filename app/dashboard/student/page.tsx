@@ -22,11 +22,22 @@ export default function MinimalistDashboard() {
   const [violinProgress, setViolinProgress] = useState(0);
   const [violinCompleted, setViolinCompleted] = useState(0);
   const [violinLessonsCount] = useState(6);
+  const [fluteProgress, setFluteProgress] = useState(0);
+  const [fluteCompleted, setFluteCompleted] = useState(0);
+  const [fluteLessonsCount] = useState(6);
+  const [bassProgress, setBassProgress] = useState(0);
+  const [bassCompleted, setBassCompleted] = useState(0);
+  const [bassLessonsCount] = useState(6);
+  const [saxophoneProgress, setSaxophoneProgress] = useState(0);
+  const [saxophoneCompleted, setSaxophoneCompleted] = useState(0);
+  const [saxophoneLessonsCount] = useState(6);
   const [teachers, setTeachers] = useState<Array<{ _id: string; userId: string; name: string; instrument: string }>>([]);
   const [loadingTeachers, setLoadingTeachers] = useState(true);
   const [showReviews, setShowReviews] = useState(false);
   const [reviews, setReviews] = useState<Array<{ teacherName: string; feedback: string; createdAt: string }>>([]);
   const [loadingReviews, setLoadingReviews] = useState(false);
+  const [stats, setStats] = useState({ totalPractice: "0h", instruments: 0, currentLevel: "Beginner", lessonsDone: 0 });
+  const [loadingStats, setLoadingStats] = useState(true);
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const router = require('next/navigation').useRouter();
   const fetchReviews = async () => {
@@ -44,6 +55,20 @@ export default function MinimalistDashboard() {
   };
   useEffect(() => {
     if (status === "authenticated" && session?.user?.email) {
+      // Fetch stats
+      fetch(`/api/stats?userId=${encodeURIComponent(session.user.email)}`)
+        .then(res => res.json())
+        .then(data => {
+          setStats({
+            totalPractice: data.totalPractice || "0h",
+            instruments: data.instruments || 0,
+            currentLevel: data.currentLevel || "Beginner",
+            lessonsDone: data.lessonsDone || 0,
+          });
+          setLoadingStats(false);
+        })
+        .catch(() => setLoadingStats(false));
+
       fetch(`/api/progress?userId=${encodeURIComponent(session.user.email)}`)
         .then(res => res.json())
         .then(data => {
@@ -63,6 +88,15 @@ export default function MinimalistDashboard() {
           const violinOnly = completedLessons.filter(
             (p: { lessonId?: string }) => typeof p.lessonId === "string" && p.lessonId.startsWith("violin-")
           );
+          const fluteOnly = completedLessons.filter(
+            (p: { lessonId?: string }) => typeof p.lessonId === "string" && p.lessonId.startsWith("flute-")
+          );
+          const bassOnly = completedLessons.filter(
+            (p: { lessonId?: string }) => typeof p.lessonId === "string" && p.lessonId.startsWith("bass-")
+          );
+          const saxophoneOnly = completedLessons.filter(
+            (p: { lessonId?: string }) => typeof p.lessonId === "string" && p.lessonId.startsWith("saxophone-")
+          );
 
           setGuitarCompleted(guitarOnly.length);
           setGuitarProgress(Math.round((guitarOnly.length / guitarLessonsCount) * 100));
@@ -72,6 +106,12 @@ export default function MinimalistDashboard() {
           setDrumProgress(Math.round((drumOnly.length / drumLessonsCount) * 100));
           setViolinCompleted(violinOnly.length);
           setViolinProgress(Math.round((violinOnly.length / violinLessonsCount) * 100));
+          setFluteCompleted(fluteOnly.length);
+          setFluteProgress(Math.round((fluteOnly.length / fluteLessonsCount) * 100));
+          setBassCompleted(bassOnly.length);
+          setBassProgress(Math.round((bassOnly.length / bassLessonsCount) * 100));
+          setSaxophoneCompleted(saxophoneOnly.length);
+          setSaxophoneProgress(Math.round((saxophoneOnly.length / saxophoneLessonsCount) * 100));
         });
     }
 
@@ -130,22 +170,22 @@ export default function MinimalistDashboard() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 hover:border-white/20 transition-colors">
                   <p className="text-[10px] text-slate-500 uppercase tracking-widest mb-2">Total Practice</p>
-                  <p className="text-2xl font-bold text-white">42h</p>
+                  <p className="text-2xl font-bold text-white">{loadingStats ? "—" : stats.totalPractice}</p>
                   <p className="text-xs text-slate-600 mt-1">All time</p>
                 </div>
                 <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 hover:border-white/20 transition-colors">
                   <p className="text-[10px] text-slate-500 uppercase tracking-widest mb-2">Instruments</p>
-                  <p className="text-2xl font-bold text-[#ff5a00]">4</p>
+                  <p className="text-2xl font-bold text-[#ff5a00]">{loadingStats ? "—" : stats.instruments}</p>
                   <p className="text-xs text-slate-600 mt-1">Learning</p>
                 </div>
                 <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 hover:border-white/20 transition-colors">
                   <p className="text-[10px] text-slate-500 uppercase tracking-widest mb-2">Current Level</p>
-                  <p className="text-2xl font-bold text-white">Int.</p>
-                  <p className="text-xs text-slate-600 mt-1">Intermediate</p>
+                  <p className="text-2xl font-bold text-white">{loadingStats ? "—" : stats.currentLevel}</p>
+                  <p className="text-xs text-slate-600 mt-1">Progress</p>
                 </div>
                 <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 hover:border-white/20 transition-colors">
                   <p className="text-[10px] text-slate-500 uppercase tracking-widest mb-2">Lessons Done</p>
-                  <p className="text-2xl font-bold text-white">15</p>
+                  <p className="text-2xl font-bold text-white">{loadingStats ? "—" : stats.lessonsDone}</p>
                   <p className="text-xs text-slate-600 mt-1">Completed</p>
                 </div>
               </div>
@@ -265,6 +305,60 @@ export default function MinimalistDashboard() {
                           <div className="h-full bg-[#ff5a00] transition-all" style={{ width: `${violinProgress}%` }} />
                         </div>
                         <p className="text-xs text-[#ff5a00] font-semibold mt-3 text-right">{violinProgress}%</p>
+                      </div>
+                    </Link>
+                  )}
+
+                  {fluteCompleted > 0 && (
+                    <Link href="/dashboard/student/flute" className="group">
+                      <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 hover:border-[#ff5a00] transition-colors">
+                        <div className="flex items-center gap-3 mb-4">
+                          <img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=100" alt="Flute" className="w-10 h-10 object-cover rounded" />
+                          <div className="flex-1">
+                            <h4 className="text-sm font-semibold text-white">Flute</h4>
+                            <p className="text-xs text-slate-500">{fluteCompleted}/{fluteLessonsCount} lessons</p>
+                          </div>
+                        </div>
+                        <div className="w-full h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                          <div className="h-full bg-[#ff5a00] transition-all" style={{ width: `${fluteProgress}%` }} />
+                        </div>
+                        <p className="text-xs text-[#ff5a00] font-semibold mt-3 text-right">{fluteProgress}%</p>
+                      </div>
+                    </Link>
+                  )}
+
+                  {bassCompleted > 0 && (
+                    <Link href="/dashboard/student/bass" className="group">
+                      <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 hover:border-[#ff5a00] transition-colors">
+                        <div className="flex items-center gap-3 mb-4">
+                          <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?q=80&w=100" alt="Bass" className="w-10 h-10 object-cover rounded" />
+                          <div className="flex-1">
+                            <h4 className="text-sm font-semibold text-white">Bass</h4>
+                            <p className="text-xs text-slate-500">{bassCompleted}/{bassLessonsCount} lessons</p>
+                          </div>
+                        </div>
+                        <div className="w-full h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                          <div className="h-full bg-[#ff5a00] transition-all" style={{ width: `${bassProgress}%` }} />
+                        </div>
+                        <p className="text-xs text-[#ff5a00] font-semibold mt-3 text-right">{bassProgress}%</p>
+                      </div>
+                    </Link>
+                  )}
+
+                  {saxophoneCompleted > 0 && (
+                    <Link href="/dashboard/student/saxophone" className="group">
+                      <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 hover:border-[#ff5a00] transition-colors">
+                        <div className="flex items-center gap-3 mb-4">
+                          <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=100" alt="Saxophone" className="w-10 h-10 object-cover rounded" />
+                          <div className="flex-1">
+                            <h4 className="text-sm font-semibold text-white">Saxophone</h4>
+                            <p className="text-xs text-slate-500">{saxophoneCompleted}/{saxophoneLessonsCount} lessons</p>
+                          </div>
+                        </div>
+                        <div className="w-full h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                          <div className="h-full bg-[#ff5a00] transition-all" style={{ width: `${saxophoneProgress}%` }} />
+                        </div>
+                        <p className="text-xs text-[#ff5a00] font-semibold mt-3 text-right">{saxophoneProgress}%</p>
                       </div>
                     </Link>
                   )}

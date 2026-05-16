@@ -96,17 +96,92 @@ export default function DrumLesson1() {
           </div>
         </section>
 
-        <section className="mb-16">
-          <h2 className="text-2xl font-semibold text-white mb-4">5. Reference Video</h2>
-          <div className="flex justify-center">
-            <div className="w-full max-w-3xl aspect-video rounded-xl border border-white/10 overflow-hidden">
-              <iframe
-                src="https://www.youtube.com/embed/et9hU7QMDYU"
-                title="Drum Grip Basics"
-                allowFullScreen
-                className="w-full h-full rounded-xl"
-                style={{ minHeight: 315 }}
-              />
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold text-white mb-4">5. Grip Variations & When to Use Them</h2>
+          <p className="text-slate-400 mb-6">
+            Different techniques serve different musical purposes.
+          </p>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-white/5 p-6 rounded-xl">
+              <h3 className="text-lg text-[#ff5a00] mb-3">Matched Grip</h3>
+              <p className="text-slate-400 text-sm mb-4">Both hands hold sticks identically. Best for:</p>
+              <ul className="text-slate-400 text-sm space-y-1">
+                <li>• Rock and pop drumming</li>
+                <li>• Fast single strokes</li>
+                <li>• Consistent sound</li>
+              </ul>
+            </div>
+            <div className="bg-white/5 p-6 rounded-xl">
+              <h3 className="text-lg text-[#ff5a00] mb-3">Traditional Grip</h3>
+              <p className="text-slate-400 text-sm mb-4">Left hand palm-up. Best for:</p>
+              <ul className="text-slate-400 text-sm space-y-1">
+                <li>• Jazz and orchestral</li>
+                <li>• Snare drum focus</li>
+                <li>• Vintage techniques</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-12 p-8 rounded-2xl bg-white/5 border border-white/10">
+          <h2 className="text-2xl font-semibold text-white mb-4">6. Rebound Control Exercises</h2>
+          <p className="text-slate-400 mb-6">
+            Master the bounce to play faster and more efficiently.
+          </p>
+          <div className="space-y-4">
+            <div className="bg-black/30 p-4 rounded-lg">
+              <h4 className="text-white font-medium mb-2">Height Control</h4>
+              <p className="text-slate-400 text-sm">Practice playing at different heights: high (loud), medium (normal), low (soft).</p>
+            </div>
+            <div className="bg-black/30 p-4 rounded-lg">
+              <h4 className="text-white font-medium mb-2">Stick Positioning</h4>
+              <p className="text-slate-400 text-sm">Keep sticks at 45-degree angle. Too flat = dead sound, too vertical = inconsistent bounce.</p>
+            </div>
+            <div className="bg-black/30 p-4 rounded-lg">
+              <h4 className="text-white font-medium mb-2">Wrist vs Finger Control</h4>
+              <p className="text-slate-400 text-sm">Use wrists for power, fingers for finesse. Combine both for optimal control.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold text-white mb-4">7. Practice Pad Techniques</h2>
+          <p className="text-slate-400 mb-6">
+            Build technique before moving to the full kit.
+          </p>
+          <div className="grid md:grid-cols-3 gap-4">
+            <div className="bg-black/40 p-4 rounded-lg text-center">
+              <h4 className="text-[#ff5a00] font-medium mb-2">Single Strokes</h4>
+              <p className="text-slate-400 text-sm">R-L-R-L alternating</p>
+              <div className="text-[#ff5a00] font-mono text-sm mt-2">• • • •</div>
+            </div>
+            <div className="bg-black/40 p-4 rounded-lg text-center">
+              <h4 className="text-[#ff5a00] font-medium mb-2">Double Strokes</h4>
+              <p className="text-slate-400 text-sm">Two bounces per hand</p>
+              <div className="text-[#ff5a00] font-mono text-sm mt-2">•• •• ••</div>
+            </div>
+            <div className="bg-black/40 p-4 rounded-lg text-center">
+              <h4 className="text-[#ff5a00] font-medium mb-2">Paradiddles</h4>
+              <p className="text-slate-400 text-sm">R-L-R-R L-R-L-L</p>
+              <div className="text-[#ff5a00] font-mono text-sm mt-2">•-•• •-••</div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold text-white mb-4">8. Common Grip Mistakes</h2>
+          <div className="space-y-3">
+            <div className="bg-red-900/20 border border-red-500/30 p-4 rounded-lg">
+              <h4 className="text-red-400 font-medium mb-1">Death Grip</h4>
+              <p className="text-slate-400 text-sm">Squeezing too hard prevents rebound and causes fatigue. Relax your hands!</p>
+            </div>
+            <div className="bg-red-900/20 border border-red-500/30 p-4 rounded-lg">
+              <h4 className="text-red-400 font-medium mb-1">Bent Wrists</h4>
+              <p className="text-slate-400 text-sm">Keep wrists straight. Bent wrists create tension and limit speed.</p>
+            </div>
+            <div className="bg-red-900/20 border border-red-500/30 p-4 rounded-lg">
+              <h4 className="text-red-400 font-medium mb-1">Elbow Flapping</h4>
+              <p className="text-slate-400 text-sm">Control elbow movement. Wild elbows waste energy and reduce precision.</p>
             </div>
           </div>
         </section>

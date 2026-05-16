@@ -192,16 +192,84 @@ export default function PianoLesson1() {
           </div>
         </section>
 
-        {/* Video */}
+        {/* Interactive Keyboard Visualization */}
         <section className="mb-12">
-          <h2 className="text-xl text-white mb-4">▶ Watch Lesson</h2>
-          <div className="aspect-video">
-            <iframe
-              src="https://www.youtube.com/embed/PwNHe0vui0k"
-              title="Piano Basics Lesson"
-              className="w-full h-full rounded-xl"
-              allowFullScreen
-            />
+          <h2 className="text-2xl text-white mb-4">🎹 Interactive Keyboard Explorer</h2>
+          <p className="text-slate-400 mb-6">
+            Click on the keyboard below to explore the pattern. Notice how the black keys create groups of 2 and 3 that repeat across the keyboard.
+          </p>
+          <div className="bg-black/50 p-6 rounded-xl border border-white/10">
+            <div className="flex justify-center items-end gap-1 mb-4">
+              {/* White keys */}
+              {['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'A', 'B'].map((note, i) => (
+                <button
+                  key={`white-${i}`}
+                  className="w-8 h-24 bg-white text-black rounded-b text-xs font-bold hover:bg-[#ff5a00] hover:text-white transition-colors"
+                  onClick={() => playNote(note.toLowerCase())}
+                >
+                  {note}
+                </button>
+              ))}
+            </div>
+            <div className="flex justify-center items-end gap-1">
+              {/* Black keys positioned over white keys */}
+              <div className="w-4"></div>
+              <button className="w-6 h-16 bg-black text-white rounded-b text-xs hover:bg-[#ff5a00] transition-colors" onClick={() => playNote('c#')}>C#</button>
+              <button className="w-6 h-16 bg-black text-white rounded-b text-xs hover:bg-[#ff5a00] transition-colors" onClick={() => playNote('d#')}>D#</button>
+              <div className="w-8"></div>
+              <button className="w-6 h-16 bg-black text-white rounded-b text-xs hover:bg-[#ff5a00] transition-colors" onClick={() => playNote('f#')}>F#</button>
+              <button className="w-6 h-16 bg-black text-white rounded-b text-xs hover:bg-[#ff5a00] transition-colors" onClick={() => playNote('g#')}>G#</button>
+              <button className="w-6 h-16 bg-black text-white rounded-b text-xs hover:bg-[#ff5a00] transition-colors" onClick={() => playNote('a#')}>A#</button>
+              <div className="w-8"></div>
+              <button className="w-6 h-16 bg-black text-white rounded-b text-xs hover:bg-[#ff5a00] transition-colors" onClick={() => playNote('c#2')}>C#</button>
+              <button className="w-6 h-16 bg-black text-white rounded-b text-xs hover:bg-[#ff5a00] transition-colors" onClick={() => playNote('d#2')}>D#</button>
+            </div>
+          </div>
+          <p className="text-slate-400 text-sm mt-4 text-center">
+            Click any key to hear its sound. Middle C is highlighted in the center.
+          </p>
+        </section>
+
+        {/* Learning Methods */}
+        <section className="mb-12 bg-white/5 p-6 rounded-xl">
+          <h2 className="text-2xl text-white mb-4">🧠 Effective Learning Methods</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <h3 className="text-lg text-[#ff5a00] mb-2">Pattern Recognition</h3>
+              <p className="text-slate-400 text-sm">
+                Instead of memorizing every key, learn to recognize the repeating pattern of 2-3 black keys. This makes finding any note intuitive.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg text-[#ff5a00] mb-2">Landmark Notes</h3>
+              <p className="text-slate-400 text-sm">
+                Use Middle C as your primary landmark. Once you find it, you can navigate to any other note by counting steps in the musical alphabet.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg text-[#ff5a00] mb-2">Physical Memory</h3>
+              <p className="text-slate-400 text-sm">
+                Your fingers will remember the keyboard layout through repetition. Start with just the white keys, then add black keys gradually.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg text-[#ff5a00] mb-2">Visual Mapping</h3>
+              <p className="text-slate-400 text-sm">
+                Think of the keyboard as a map. The black keys are like landmarks that help you orient yourself on the white key highway.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Advanced Theory */}
+        <section className="mb-12">
+          <h2 className="text-2xl text-white mb-4">🎼 Understanding Octaves</h2>
+          <p className="text-slate-400 mb-4">
+            An octave is the distance between two notes with the same name. Each octave represents a doubling of frequency.
+          </p>
+          <div className="bg-black/40 p-6 rounded-xl text-center">
+            <div className="text-[#ff5a00] font-mono text-lg mb-2">C4 → C5 → C6</div>
+            <p className="text-slate-400 text-sm">Middle C is C4. The next C up is C5 (higher octave), the next is C6.</p>
           </div>
         </section>
 

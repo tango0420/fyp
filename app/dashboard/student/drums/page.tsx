@@ -17,7 +17,7 @@ const drumLessons = [
     description: "Learn the parts of the kit, matched grip, rebound, and the posture that powers every strong drummer.",
     difficulty: "Beginner",
     duration: "18 min",
-    thumbnail: "https://images.unsplash.com/photo-1524230613590-d89046019952?q=80&w=800"
+    thumbnail: "https://i.pinimg.com/736x/59/21/16/592116028ee54a5c3088019bfc0263e0.jpg"
   },
   {
     id: "drums-2",
@@ -33,7 +33,7 @@ const drumLessons = [
     description: "Build your hands with single strokes, doubles, and paradiddles to improve speed and control.",
     difficulty: "Beginner",
     duration: "24 min",
-    thumbnail: "https://images.unsplash.com/photo-1543443258-92b04ad5ecf5?q=80&w=800"
+    thumbnail: "https://i.pinimg.com/736x/a9/02/4e/a9024e52d3f19cc6c9bef3c5cc154e7b.jpg"
   },
   {
     id: "drums-4",
@@ -41,7 +41,7 @@ const drumLessons = [
     description: "Train your hands and feet to do different jobs at the same time without losing the pulse.",
     difficulty: "Intermediate",
     duration: "26 min",
-    thumbnail: "https://images.unsplash.com/photo-1594132174009-082046487e41?q=80&w=800"
+    thumbnail: "https://i.pinimg.com/1200x/a1/2f/b7/a12fb7deb94b1b24a6a9791d4a09a028.jpg"
   },
   {
     id: "drums-5",
@@ -104,7 +104,7 @@ export default function DrumsDashboard() {
       <main className="w-full">
         <section className="relative h-[60vh] min-h-[500px] bg-[#1a1a1a] overflow-hidden flex flex-col justify-center border-b border-white/5">
           <img 
-            src="https://images.unsplash.com/photo-1524230613590-d89046019952?q=80&w=2400" 
+            src="https://i.pinimg.com/736x/e4/70/28/e47028e63e7830362b013f1e885a5110.jpg" 
             className="absolute inset-0 w-full h-full object-cover opacity-20"
             alt="Drum Kit"
           />
