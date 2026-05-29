@@ -159,38 +159,7 @@ export default function AuthenticHome() {
         </div>
       </section>
 
-      {/* Bento Grid */}
-      <section className="w-full px-16 pb-32">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 auto-rows-[220px]">
-          <div onClick={() => router.push('/login')} className="md:col-span-2 md:row-span-2 bg-zinc-900/50 backdrop-blur-md border border-white/5 rounded-3xl p-8 flex flex-col justify-between group cursor-pointer overflow-hidden relative">
-            <div className="z-10">
-              <h3 className="text-2xl font-bold">The Grand Piano</h3>
-              <p className="text-white/40 text-sm mt-2">Mastering the 88 keys of emotion.</p>
-            </div>
-            <ArrowUpRight className="absolute top-8 right-8 text-white/20 group-hover:text-orange-500 transition-colors" />
-            <img
-              src="https://i.pinimg.com/1200x/2b/25/45/2b2545f87724acb4d3bd343e1a056b76.jpg"
-              className="absolute bottom-4 right-4 w-48 h-48 object-cover grayscale opacity-30 group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-700"
-            />
-          </div>
-          <div onClick={() => router.push('/login')} className="md:col-span-2 bg-white text-black rounded-3xl p-8 flex flex-col justify-center cursor-pointer">
-            <div className="flex items-center gap-3 mb-4">
-              <Search size={18} />
-              <span className="text-sm font-bold uppercase">Find your sound</span>
-            </div>
-            <div className="border-b border-black/10 py-2 text-xl font-serif italic text-black/30">Violin? Bass? Theremin?</div>
-          </div>
-          <div onClick={() => router.push('/login')} className="bg-zinc-900/50 backdrop-blur-md border border-white/5 rounded-3xl p-6 flex flex-col justify-center items-center text-center cursor-pointer hover:border-orange-500/30 transition-all">
-            <Mic2 className="text-orange-500 mb-2" size={24} />
-            <span className="text-2xl font-bold">1-on-1</span>
-            <span className="text-[10px] text-white/40 uppercase tracking-widest">Live Coaching</span>
-          </div>
-          <div onClick={() => router.push('/login')} className="bg-zinc-900/50 backdrop-blur-md border border-white/5 rounded-3xl p-6 flex flex-col justify-center items-center text-center cursor-pointer hover:border-orange-500/30 transition-all">
-            <div className="text-2xl font-bold">20+</div>
-            <span className="text-[10px] text-white/40 uppercase tracking-widest">Instruments</span>
-          </div>
-        </div>
-      </section>
+      
 
       {/* ─── ACADEMY SECTION ─── */}
       <section id="academy" className="max-w-7xl mx-auto px-8 pb-32">

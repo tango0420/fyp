@@ -2,9 +2,7 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
 import type { NextAuthOptions } from 'next-auth';
-import clientPromise from '../../../lib/mongodb-client';
 import User from "../../../models/User";
 import connectMongoDB from "../../../lib/mongodb";
 import bcrypt from "bcryptjs";
@@ -34,7 +32,6 @@ GoogleProvider({
       },
     }),
   ],
-  adapter: MongoDBAdapter(clientPromise),
   session: { strategy: "jwt" },
   secret: process.env.NEXTAUTH_SECRET,
 };

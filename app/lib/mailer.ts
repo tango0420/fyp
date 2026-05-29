@@ -63,7 +63,7 @@ export async function sendLessonAcceptanceEmail(
     subject: `✓ Your Lesson Request Approved - Virtuoso Learning`,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <div style="background: linear-gradient(135deg, #ff5a00 0%, #ff7722 100%); padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
+        <div style="background: linear-gradient(135deg, #f97316 0%, #fb923c 100%); padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
           <h1 style="color: white; margin: 0; font-size: 28px;">🎵 Lesson Accepted!</h1>
         </div>
         
@@ -78,7 +78,7 @@ export async function sendLessonAcceptanceEmail(
           </p>
           
           ${lessonTime ? `
-            <div style="background: white; border-left: 4px solid #ff5a00; padding: 15px; margin: 20px 0; border-radius: 4px;">
+            <div style="background: white; border-left: 4px solid #f97316; padding: 15px; margin: 20px 0; border-radius: 4px;">
               <p style="color: #666; margin: 0;"><strong>Scheduled Time:</strong></p>
               <p style="color: #333; font-size: 16px; margin: 5px 0 0 0;">${lessonTime}</p>
             </div>
@@ -91,7 +91,7 @@ export async function sendLessonAcceptanceEmail(
           
           <div style="text-align: center; margin-top: 30px;">
             <a href="${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/dashboard/student" 
-               style="background: #ff5a00; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: bold;">
+              style="background: #f97316; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: bold;">
               Go to Dashboard
             </a>
           </div>
@@ -145,7 +145,7 @@ export async function sendLessonRejectionEmail(
           
           <div style="text-align: center; margin-top: 30px;">
             <a href="${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/dashboard/student" 
-               style="background: #475569; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: bold;">
+              style="background: #475569; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: bold;">
               View Available Teachers
             </a>
           </div>

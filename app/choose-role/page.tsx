@@ -2,6 +2,7 @@
 
 
 import React, { useEffect } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Disc, BookOpen, Users } from 'lucide-react';
 import { useSession } from 'next-auth/react';
@@ -50,34 +51,41 @@ export default function ChooseRolePage() {
     }
     setIsLoading(true);
     try {
-      await fetch('/api/set-role', {
+      const response = await fetch('/api/set-role', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ role, email: session.user.email }),
       });
+      if (!response.ok) {
+        throw new Error('Failed to save your role.');
+      }
       if (role === 'teacher') {
-        router.push('/dashboard/teacher');
+        router.replace('/dashboard/teacher');
       } else {
-        router.push('/dashboard');
+        router.replace('/dashboard');
       }
     } catch (error) {
       console.error('Error:', error);
+      alert('Could not save your role. Please try again.');
       setIsLoading(false);
     }
   };
 
   const handleSkip = () => {
-    router.push('/dashboard');
+    router.replace('/dashboard');
   };
 
   return (
     <div className="relative min-h-screen">
       {/* Background Image */}
       <div className="fixed inset-0 -z-10">
-        <img 
-          src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2070&auto=format&fit=crop" 
+        <Image
+          src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2070&auto=format&fit=crop"
           alt="Music Studio"
-          className="w-full h-full object-cover"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-black/50" />
       </div>

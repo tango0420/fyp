@@ -3,6 +3,8 @@
 import React, { useState, Suspense } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { Disc } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 
@@ -54,12 +56,11 @@ function LoginForm() {
         Welcome back. Continue your musical journey.
       </p>
 
-      {/* Email / Password */}
       <form className="w-full flex flex-col gap-4" onSubmit={handleSubmit}>
         <input
           type="email"
           value={email}
-          onChange={e => setEmail(e.target.value)}
+          onChange={(event) => setEmail(event.target.value)}
           placeholder="Email"
           className="bg-zinc-800/60 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-orange-500 transition-colors"
           required
@@ -67,11 +68,19 @@ function LoginForm() {
         <input
           type="password"
           value={password}
-          onChange={e => setPassword(e.target.value)}
+          onChange={(event) => setPassword(event.target.value)}
           placeholder="Password"
           className="bg-zinc-800/60 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-orange-500 transition-colors"
           required
         />
+        <div className="flex justify-end -mt-2">
+          <Link
+            href="/forgot-password"
+            className="text-xs text-white/40 hover:text-orange-400 transition-colors"
+          >
+            Forgot password?
+          </Link>
+        </div>
         <button
           type="submit"
           className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-xl font-bold uppercase tracking-widest shadow-lg hover:from-orange-600 hover:to-orange-500 transition-all"
@@ -102,18 +111,18 @@ function LoginForm() {
 
       <div className="mt-6 text-white/40 text-xs text-center space-y-2">
         <p>
-          Don't have an account?{" "}
-          <a
+          Don&apos;t have an account?{" "}
+          <Link
             href={`/signup?callbackUrl=${encodeURIComponent(callbackUrl)}`}
             className="text-orange-500 hover:underline"
           >
             Sign up free
-          </a>
+          </Link>
         </p>
         <p>
-          <a href="/" className="text-white/30 hover:text-white/60 transition">
+          <Link href="/" className="text-white/30 hover:text-white/60 transition">
             ← Back to Home
-          </a>
+          </Link>
         </p>
       </div>
     </div>
@@ -126,10 +135,13 @@ export default function LoginPage() {
       {/* Background */}
       <div className="fixed inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-[#121214]" />
-        <img
+        <Image
           src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2070&auto=format&fit=crop"
           alt="Studio Background"
-          className="w-full h-full object-cover scale-105 blur-[2px] opacity-40"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover scale-105 blur-[2px] opacity-40"
         />
       </div>
 

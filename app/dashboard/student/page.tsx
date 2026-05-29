@@ -7,6 +7,7 @@ import { Search, Play, Clock, BarChart3, ChevronRight } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { LogoutButton } from "@/app/components/LogoutButton";
 import StudentSidebar from "@/app/components/StudentSidebar";
+import BlogPanel from "@/app/components/BlogPanel";
 
 export default function MinimalistDashboard() {
   const { data: session, status } = useSession();
@@ -161,8 +162,8 @@ export default function MinimalistDashboard() {
 
         <div className="pl-5 pt-30 px-12 py-8 grid grid-cols-12 gap-8">
           
-          {/* Main Section - Full Width */}
-          <div className="col-span-12 space-y-8">
+          {/* Main Section - Left Column */}
+          <div className="col-span-12 lg:col-span-9 space-y-8">
             
             {/* Quick Stats Section */}
             <section>
@@ -365,6 +366,13 @@ export default function MinimalistDashboard() {
                 </div>
               </section>
             )}
+          </div>
+
+          {/* Right Column - Blog Panel */}
+          <div className="col-span-12 lg:col-span-3">
+            <div className="sticky top-28">
+              <BlogPanel />
+            </div>
           </div>
         </div>
 

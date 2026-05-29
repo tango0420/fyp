@@ -30,7 +30,7 @@ export function LogoutButton() {
     <button
       onClick={handleLogout}
       disabled={isLoading}
-      className="flex items-center gap-2 px-4 py-2 rounded-full bg-red-600/20 border border-red-500/50 text-red-400 hover:bg-red-600/30 hover:text-red-300 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+      className="flex items-center gap-6 px-4 py-2 rounded-full bg-red-600/20 border border-red-500/50 text-red-400 hover:bg-red-600/30 hover:text-red-300 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
     >
       <LogOut size={18} />
       <span className="text-sm font-semibold uppercase tracking-widest">

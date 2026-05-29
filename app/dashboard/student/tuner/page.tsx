@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { LogoutButton } from "@/app/components/LogoutButton";
 import StudentSidebar from "@/app/components/StudentSidebar";
+import Link from "next/link";
 
 
 
@@ -51,7 +52,7 @@ const INSTRUMENT_TUNINGS: Record<string, { name: string; strings: Array<{ name: 
 const NOTES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
 
 export default function TunerPage() {
-  useSession();
+  const { data: session } = useSession();
 
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
@@ -217,27 +218,83 @@ export default function TunerPage() {
         .t-header {
           position: fixed;
           top: 0; left: 80px; right: 0;
-          height: 80px;
+          height: 96px; /* increased for tuner page only */
           background: #0b0b0e;
           border-bottom: 1px solid #13131a;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 0 48px;
+          padding: 0 40px;
           z-index: 40;
         }
-        .t-breadcrumb {
-          display: flex; align-items: center; gap: 16px;
-          font-size: 16px; color: #2d2d38;
+        .t-header-left {
+          display: flex; align-items: center; gap: 10px;
         }
-        .t-breadcrumb span.current { color: #e2e4e9; font-weight: 600; font-size: 18px; }
+        .t-breadcrumb {
+          display: flex; align-items: center; gap: 12px;
+          font-size: 16px;
+        }
+        .t-breadcrumb a {
+          color: #4a4a60; text-decoration: none;
+          font-weight: 400;
+          transition: color 0.15s;
+        }
+        .t-breadcrumb a:hover { color: #9ca3af; }
+        .t-breadcrumb-sep {
+          color: #2d2d3e; font-size: 15px; font-weight: 300;
+        }
+        .t-breadcrumb span.current {
+          color: #e2e4e9; font-weight: 600;
+        }
+
+        /* ── Header Center Search ── */
+        .t-header-search {
+          display: flex; align-items: center; gap: 8px;
+          background: transparent;
+          padding: 8px 16px;
+          border-radius: 8px;
+          min-width: 340px;
+        }
+        .t-header-search svg { color: #3d3d50; flex-shrink: 0; }
+        .t-header-search input {
+          background: transparent;
+          border: none; outline: none;
+          font-size: 14px; color: #6b7280;
+          font-family: 'DM Sans', sans-serif;
+          width: 100%;
+        }
+        .t-header-search input::placeholder { color: #3d3d50; }
+
+        /* ── Header Right ── */
+        .t-header-right {
+          display: flex; align-items: center; gap: 14px;
+        }
+        .t-header-email {
+          font-size: 13px; color: #9ca3af;
+        }
+        .t-header-avatar {
+          width: 48px; height: 48px;
+          border-radius: 50%;
+          background: #4b5563;
+          display: flex; align-items: center; justify-content: center;
+          font-size: 14px; font-weight: 700;
+          color: #fff;
+          flex-shrink: 0;
+        }
+        .t-header-logout {
+          width: 36px; height: 36px;
+          border-radius: 50%;
+          background: #c0392b;
+          display: flex; align-items: center; justify-content: center;
+          flex-shrink: 0;
+        }
 
         /* ── Main ── */
         .t-main {
           margin-left: 80px;
-          margin-top: 80px;
+          margin-top: 85px; /* match increased header height */
           flex: 1;
-          min-height: calc(100vh - 80px);
+          min-height: calc(100vh - 85px);
         }
         .t-content {
           max-width: 1200px;
@@ -305,20 +362,20 @@ export default function TunerPage() {
           transition: all 0.18s;
         }
         .t-string:hover { border-color: #1f1f2a; background: #111116; }
-        .t-string.active { border-color: rgba(255,90,0,0.35); background: rgba(255,90,0,0.06); }
+        .t-string.active { border-color: rgba(251,146,60,0.35); background: rgba(251,146,60,0.06); }
         .t-string .sn {
           font-family: 'DM Mono', monospace;
           font-size: 14px; font-weight: 500;
           color: #5a5a72;
           transition: color 0.18s;
         }
-        .t-string.active .sn { color: #ff5a00; }
+        .t-string.active .sn { color: var(--accent-strong); }
         .t-string .sf {
           font-family: 'DM Mono', monospace;
           font-size: 9px; color: #222230;
           transition: color 0.18s;
         }
-        .t-string.active .sf { color: rgba(255,90,0,0.45); }
+        .t-string.active .sf { color: rgba(251,146,60,0.45); }
 
         /* ── Tuner Card ── */
         .t-card {
@@ -455,13 +512,13 @@ export default function TunerPage() {
           font-family: 'DM Sans', sans-serif;
         }
         .t-btn-start {
-          background: #ff5a00;
+          background: var(--accent);
           color: #fff;
         }
         .t-btn-start:hover {
-          background: #ff6b1a;
+          background: var(--accent-strong);
           transform: translateY(-1px);
-          box-shadow: 0 6px 22px rgba(255,90,0,0.25);
+          box-shadow: 0 6px 22px rgba(249,115,22,0.25);
         }
         .t-btn-stop {
           background: #111116;
@@ -521,12 +578,27 @@ export default function TunerPage() {
       <div className="t-root">
         {/* Header */}
         <header className="t-header">
-          <div className="t-breadcrumb">
-            <span>Virtuoso</span>
-            <span style={{ color: "#1a1a22" }}>/</span>
-            <span className="current">Tuner</span>
+          {/* Left: breadcrumb */}
+          <div className="t-header-left">
+            <div className="t-breadcrumb">
+              <Link href="/dashboard/student">Virtuoso</Link>
+              <span className="t-breadcrumb-sep">/</span>
+              <span className="current">Tuner</span>
+            </div>
           </div>
-          <LogoutButton />
+
+          
+
+          {/* Right: email + avatar + logout */}
+          <div className="t-header-right">
+            <span className="t-header-email">
+              {session?.user?.email ?? ""}
+            </span>
+            <div className="t-header-avatar">
+              {session?.user?.name ? session.user.name.charAt(0).toUpperCase() : "S"}
+            </div>
+            <LogoutButton />
+          </div>
         </header>
 
         {/* Main */}
