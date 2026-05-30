@@ -1,10 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
 import Quiz from "@/app/models/Quiz";
-import clientPromise from "@/app/lib/mongodb-client";
+import connectMongoDB from "@/app/lib/mongodb";
+import fs from "fs";
+import path from "path";
+
+async function seedQuizzesIfEmpty() {
+  const existingCount = await Quiz.countDocuments();
+  if (existingCount > 0) return;
+
+  const quizFilePath = path.join(process.cwd(), "quiz-data.json");
+  if (!fs.existsSync(quizFilePath)) return;
+
+  const rawData = fs.readFileSync(quizFilePath, "utf-8");
+  const quizzes = JSON.parse(rawData);
+  if (!Array.isArray(quizzes) || quizzes.length === 0) return;
+
+  await Quiz.insertMany(quizzes);
+}
 
 export async function GET(request: NextRequest) {
   try {
-    await clientPromise;
+    await connectMongoDB();
+    await seedQuizzesIfEmpty();
 
     const { searchParams } = new URL(request.url);
     const instrument = searchParams.get("instrument");

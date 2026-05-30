@@ -26,7 +26,7 @@ export default function ConfirmPage() {
   }, []);
 
   const verifyAndBook = async () => {
-    try {
+    try { 
       // eSewa sends back base64-encoded data in the `data` query param
       const encodedResponse = searchParams.get("data");
       if (!encodedResponse) {

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { MessageSquare } from "lucide-react";
 import Link from "next/link";
 import { Search, Play, Clock, BarChart3, ChevronRight } from "lucide-react";
@@ -10,6 +10,7 @@ import StudentSidebar from "@/app/components/StudentSidebar";
 import BlogPanel from "@/app/components/BlogPanel";
 
 export default function MinimalistDashboard() {
+  const progressRef = useRef<HTMLDivElement>(null);
   const { data: session, status } = useSession();
   const [guitarProgress, setGuitarProgress] = useState(0);
   const [guitarCompleted, setGuitarCompleted] = useState(0);
@@ -39,8 +40,33 @@ export default function MinimalistDashboard() {
   const [loadingReviews, setLoadingReviews] = useState(false);
   const [stats, setStats] = useState({ totalPractice: "0h", instruments: 0, currentLevel: "Beginner", lessonsDone: 0 });
   const [loadingStats, setLoadingStats] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const router = require('next/navigation').useRouter();
+
+  const instruments = [
+    "guitar",
+    "piano",
+    "drums",
+    "violin",
+    "flute",
+    "bass",
+    "saxophone",
+  ];
+
+  const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      const query = searchQuery.toLowerCase().trim();
+      const matchedInstrument = instruments.find((inst) =>
+        inst.toLowerCase().includes(query) || query.includes(inst.toLowerCase())
+      );
+
+      if (matchedInstrument) {
+        router.push(`/dashboard/student/${matchedInstrument}`);
+        setSearchQuery("");
+      }
+    }
+  };
   const fetchReviews = async () => {
     if (!session?.user?.email) return;
     setLoadingReviews(true);
@@ -140,7 +166,14 @@ export default function MinimalistDashboard() {
           <div className="flex items-center gap-8">
             <div className="relative group border-r border-white/5 pr-8">
               <Search size={18} className="absolute left-0 top-1/2 -translate-y-1/2 text-slate-600" />
-              <input type="text" placeholder="Search..." className="bg-transparent border-none text-sm pl-8 outline-none w-48 placeholder:text-slate-700" />
+              <input
+                type="text"
+                placeholder="Search instruments..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={handleSearch}
+                className="bg-transparent border-none text-sm pl-8 outline-none w-48 placeholder:text-slate-700 focus:placeholder:text-slate-600"
+              />
             </div>
             <div className="flex items-center gap-4">
                 <p className="text-sm font-semibold text-slate-200">
@@ -201,19 +234,19 @@ export default function MinimalistDashboard() {
                     <p className="text-sm font-semibold text-white group-hover:text-[#ff5a00] transition-colors">Browse Instruments</p>
                   </div>
                 </Link>
-                <button className="group w-full">
+                <button className="group w-full" onClick={() => router.push("/dashboard/student/book-tutor")}>
                   <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 text-center hover:border-[#ff5a00] transition-colors cursor-pointer">
                     <p className="text-sm font-semibold text-white group-hover:text-[#ff5a00] transition-colors">Book Tutor</p>
                   </div>
                 </button>
-                <button className="group w-full">
+                <button className="group w-full" onClick={() => progressRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
                   <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 text-center hover:border-[#ff5a00] transition-colors cursor-pointer">
                     <p className="text-sm font-semibold text-white group-hover:text-[#ff5a00] transition-colors">Continue Lesson</p>
                   </div>
                 </button>
-                <button className="group w-full">
+                <button className="group w-full" onClick={() => router.push("/dashboard/student/quiz")}>
                   <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-4 text-center hover:border-[#ff5a00] transition-colors cursor-pointer">
-                    <p className="text-sm font-semibold text-white group-hover:text-[#ff5a00] transition-colors">View Achievements</p>
+                    <p className="text-sm font-semibold text-white group-hover:text-[#ff5a00] transition-colors">Quizzes</p>
                   </div>
                 </button>
               </div>
@@ -235,7 +268,7 @@ export default function MinimalistDashboard() {
             </section>
             {/* Your Learning Progress - Simple Classic */}
             {(guitarCompleted > 0 || pianoCompleted > 0 || drumCompleted > 0 || violinCompleted > 0) && (
-              <section>
+              <section ref={progressRef}>
                 <h2 className="text-lg font-bold text-white mb-4">Your Progress</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
                   {guitarCompleted > 0 && (

@@ -12,9 +12,16 @@ export async function GET() {
     email: String,
     bio: String,
     instrument: String,
+    sessionFee: Number,
     contact: String,
   }, { collection: 'teachers' });
   const Teacher = mongoose.models.Teacher || mongoose.model('Teacher', TeacherSchema);
   const teachers = await Teacher.find({});
-  return NextResponse.json({ teachers });
+  // Ensure sessionFee is numeric when returning
+  const normalized = teachers.map((t: any) => {
+    const obj = t.toObject ? t.toObject() : t;
+    obj.sessionFee = Number(obj.sessionFee) || 0;
+    return obj;
+  });
+  return NextResponse.json({ teachers: normalized });
 }

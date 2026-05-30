@@ -6,6 +6,11 @@ export const dynamic = "force-dynamic";
 export async function POST(req: Request) {
   try {
     const data = await req.json();
+    // Coerce sessionFee to number (if provided as string from form)
+    if (data.sessionFee !== undefined) {
+      const num = Number(data.sessionFee);
+      data.sessionFee = Number.isFinite(num) ? num : 0;
+    }
     await connectMongoDB();
     const mongoose = (await import('mongoose')).default;
     const TeacherSchema = new mongoose.Schema({
@@ -47,6 +52,8 @@ export async function GET(req: Request) {
     email: String,
     bio: String,
     instrument: String,
+    sessionFee: Number,
+    sessionFee: Number,
     contact: String,
     social: {
       instagram: String,
@@ -59,7 +66,9 @@ export async function GET(req: Request) {
   const Teacher = mongoose.models.Teacher || mongoose.model('Teacher', TeacherSchema);
   const info = await Teacher.findOne({ userId });
   if (info) {
-    return NextResponse.json({ exists: true, info });
+    const obj = info.toObject ? info.toObject() : info;
+    obj.sessionFee = Number(obj.sessionFee) || 0;
+    return NextResponse.json({ exists: true, info: obj });
   } else {
     return NextResponse.json({ exists: false });
   }

@@ -25,14 +25,8 @@ const instruments = [
   { name: "Harmonica", type: "Woodwind / Blues", image: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=800&auto=format&fit=crop" },
   { name: "Banjo", type: "String / Folk", image: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=800&auto=format&fit=crop" },
   { name: "Mandolin", type: "String / Folk", image: "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=800&auto=format&fit=crop" },
-  { name: "French Horn", type: "Brass", image: "https://images.unsplash.com/photo-1478178143585-9373e7907176?q=80&w=800&auto=format&fit=crop" },
-  { name: "Oboe", type: "Woodwind", image: "https://images.unsplash.com/photo-1517049290392-f2b2316c0fa8?q=80&w=800&auto=format&fit=crop" },
   { name: "Percussion", type: "Mallets / Vibraphone", image: "https://images.unsplash.com/photo-1543443374-b6fe10a6ab7b?q=80&w=800&auto=format&fit=crop" },
-  { name: "Tuba", type: "Brass / Low", image: "https://images.unsplash.com/photo-1478178143585-9373e7907176?q=80&w=800&auto=format&fit=crop" },
-  { name: "Viola", type: "Classical / Strings", image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=800&auto=format&fit=crop" },
-  { name: "Acoustic Bass", type: "String / Jazz", image: "https://images.unsplash.com/photo-1487856671538-e7e516e484c7?q=80&w=800&auto=format&fit=crop" },
-  { name: "Synthesizer", type: "Electronic / Digital", image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800&auto=format&fit=crop" },
-  { name: "Organ", type: "Electronic / Classical", image: "https://cdn.pixabay.com/photo/2023/03/31/18/44/piano-7890735_1280.jpg" },
+ 
 ];
 
 export default function InstrumentsPage() {

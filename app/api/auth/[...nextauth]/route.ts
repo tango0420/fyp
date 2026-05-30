@@ -26,13 +26,46 @@ GoogleProvider({
         await connectMongoDB();
         const user = await User.findOne({ email: credentials?.email });
         if (user && await bcrypt.compare(credentials?.password || "", user.password)) {
-          return { id: user._id.toString(), email: user.email, name: user.email };
+          return {
+            id: user._id.toString(),
+            email: user.email,
+            name: user.name || user.email,
+            image: user.image || undefined,
+            role: user.role,
+          };
         }
         return null;
       },
     }),
   ],
   session: { strategy: "jwt" },
+  callbacks: {
+    async jwt({ token, user }) {
+      const email = user?.email || token.email;
+      if (email) {
+        await connectMongoDB();
+        const dbUser = await User.findOne({ email });
+        if (dbUser) {
+          token.id = dbUser._id.toString();
+          token.name = dbUser.name || token.name;
+          token.email = dbUser.email;
+          token.image = dbUser.image || token.image;
+          token.role = dbUser.role || token.role;
+        }
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.id as string;
+        session.user.name = token.name as string;
+        session.user.email = token.email as string;
+        session.user.image = token.image as string;
+        (session.user as any).role = token.role as string;
+      }
+      return session;
+    },
+  },
   secret: process.env.NEXTAUTH_SECRET,
 };
 

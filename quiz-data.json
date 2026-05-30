@@ -5,6 +5,7 @@
     "level": "Beginner",
     "title": "Guitar Basics: Parts & Strings",
     "description": "Learn the basic parts of a guitar and understand the strings",
+    "passingScore": 70,
     "questions": [
       {
         "questionId": "q1",
@@ -46,8 +47,7 @@
         "correctAnswer": "Holds the strings in place",
         "explanation": "The bridge anchors the strings on the body of the guitar and transfers string vibrations to the soundboard."
       }
-    ],
-    "passingScore": 70
+    ]
   },
   {
     "quizId": "guitar-beginner-2",
@@ -55,202 +55,1015 @@
     "level": "Beginner",
     "title": "Guitar Basics: Open Chords",
     "description": "Master the fundamental open chords every guitarist should know",
+    "passingScore": 70,
+    "questions": []
+  },
+  {
+    "quizId": "guitar-beginner",
+    "instrument": "Guitar",
+    "level": "Beginner",
+    "title": "Guitar Beginner Essentials",
+    "description": "Basic tuning, open chords, and simple rhythm for guitar.",
+    "passingScore": 70,
     "questions": [
       {
-        "questionId": "q1",
-        "question": "Which of these is an open chord?",
+        "questionId": "guitar-beginner-q1",
+        "question": "Which of these is the standard tuning for a 6-string guitar from lowest to highest?",
         "type": "multiple-choice",
-        "options": ["C Major", "F# Major", "B Major", "A# Minor"],
+        "options": ["E A D G B E", "A D G C E A", "D G C F A D", "E B G D A E"],
+        "correctAnswer": "E A D G B E",
+        "explanation": "Standard tuning for a 6-string guitar is E-A-D-G-B-E."
+      },
+      {
+        "questionId": "guitar-beginner-q2",
+        "question": "True or False: An open chord includes at least one open string.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "An open chord uses one or more strings that are played without fretting."
+      },
+      {
+        "questionId": "guitar-beginner-q3",
+        "question": "Which chord is an example of an open major chord?",
+        "type": "multiple-choice",
+        "options": ["C Major", "F# Major", "B Major", "G# Major"],
         "correctAnswer": "C Major",
-        "explanation": "C Major is a common open chord using fingers on the 1st and 2nd frets. F#, B, and A# are typically played as barre chords."
+        "explanation": "C Major is a common open chord played on acoustic guitar."
       },
       {
-        "questionId": "q2",
-        "question": "True or False: An open chord means at least one string is played open without fretting.",
-        "type": "true-false",
-        "options": ["True", "False"],
-        "correctAnswer": "True",
-        "explanation": "An open chord includes at least one open string (not fretted) in the chord shape."
-      },
-      {
-        "questionId": "q3",
-        "question": "The G Major chord is formed primarily on which frets?",
+        "questionId": "guitar-beginner-q4",
+        "question": "What is the purpose of the guitar pick?",
         "type": "multiple-choice",
-        "options": ["1st and 2nd frets", "2nd and 3rd frets", "1st and 3rd frets", "All open strings"],
-        "correctAnswer": "1st and 3rd frets",
-        "explanation": "G Major uses the 1st and 3rd frets with one open string (the high E string)."
+        "options": ["To tune the guitar", "To pluck or strum the strings", "To clean the strings", "To press frets"],
+        "correctAnswer": "To pluck or strum the strings",
+        "explanation": "A pick is used to strike or pluck the strings to produce sound."
       }
-    ],
-    "passingScore": 70
+    ]
   },
   {
-    "quizId": "piano-beginner-1",
-    "instrument": "Piano",
-    "level": "Beginner",
-    "title": "Piano Keys: Notes & Layout",
-    "description": "Understand the piano keyboard layout and note names",
-    "questions": [
-      {
-        "questionId": "q1",
-        "question": "How many keys are on a standard piano?",
-        "type": "multiple-choice",
-        "options": ["61 keys", "73 keys", "88 keys", "108 keys"],
-        "correctAnswer": "88 keys",
-        "explanation": "A standard piano has 88 keys spanning from A0 to C8."
-      },
-      {
-        "questionId": "q2",
-        "question": "Which key color is more common on a piano?",
-        "type": "multiple-choice",
-        "options": ["Black keys are more common", "White keys are more common", "They are equal", "It varies by piano"],
-        "correctAnswer": "White keys are more common",
-        "explanation": "There are 52 white keys and 36 black keys on a standard 88-key piano."
-      },
-      {
-        "questionId": "q3",
-        "question": "True or False: Middle C is in the middle of the piano keyboard.",
-        "type": "true-false",
-        "options": ["True", "False"],
-        "correctAnswer": "True",
-        "explanation": "Middle C (C4) is approximately in the center of an 88-key piano keyboard."
-      },
-      {
-        "questionId": "q4",
-        "question": "How many black keys are in each octave?",
-        "type": "multiple-choice",
-        "options": ["5 black keys", "6 black keys", "7 black keys", "8 black keys"],
-        "correctAnswer": "5 black keys",
-        "explanation": "Each octave contains 12 keys: 7 white keys and 5 black keys."
-      }
-    ],
-    "passingScore": 70
-  },
-  {
-    "quizId": "drums-beginner-1",
-    "instrument": "Drums",
-    "level": "Beginner",
-    "title": "Drums: Basic Components",
-    "description": "Learn the parts of a drum kit and their names",
-    "questions": [
-      {
-        "questionId": "q1",
-        "question": "What is the largest drum in a basic drum kit called?",
-        "type": "multiple-choice",
-        "options": ["Snare drum", "Bass drum", "Tom", "Cymbal"],
-        "correctAnswer": "Bass drum",
-        "explanation": "The bass drum (or kick drum) is the largest drum, played with a foot pedal."
-      },
-      {
-        "questionId": "q2",
-        "question": "True or False: Cymbals are made of metal.",
-        "type": "true-false",
-        "options": ["True", "False"],
-        "correctAnswer": "True",
-        "explanation": "Cymbals are made of brass or bronze alloys and produce metallic sounds."
-      },
-      {
-        "questionId": "q3",
-        "question": "Which drum typically has wires underneath it?",
-        "type": "multiple-choice",
-        "options": ["Bass drum", "Tom", "Snare drum", "Floor tom"],
-        "correctAnswer": "Snare drum",
-        "explanation": "The snare drum has metal wires (called snares) on the bottom that vibrate to create its characteristic sound."
-      }
-    ],
-    "passingScore": 70
-  },
-  {
-    "quizId": "violin-beginner-1",
-    "instrument": "Violin",
-    "level": "Beginner",
-    "title": "Violin: Structure & Parts",
-    "description": "Understand the basic structure of a violin",
-    "questions": [
-      {
-        "questionId": "q1",
-        "question": "How many strings does a violin have?",
-        "type": "multiple-choice",
-        "options": ["2 strings", "4 strings", "6 strings", "8 strings"],
-        "correctAnswer": "4 strings",
-        "explanation": "A standard violin has 4 strings tuned to G-D-A-E from lowest to highest."
-      },
-      {
-        "questionId": "q2",
-        "question": "What is the bow used for in violin playing?",
-        "type": "multiple-choice",
-        "options": ["Tuning the strings", "Producing sound by rubbing the strings", "Holding the violin", "Adjusting tension"],
-        "correctAnswer": "Producing sound by rubbing the strings",
-        "explanation": "The bow contains horsehair that rubs against the strings to create vibrations and sound."
-      },
-      {
-        "questionId": "q3",
-        "question": "True or False: The chin rest is part of the violin's body.",
-        "type": "true-false",
-        "options": ["True", "False"],
-        "correctAnswer": "True",
-        "explanation": "The chin rest is mounted on the lower bout of the violin, helping the player support and stabilize the instrument."
-      }
-    ],
-    "passingScore": 70
-  },
-  {
-    "quizId": "guitar-intermediate-1",
+    "quizId": "guitar-intermediate",
     "instrument": "Guitar",
     "level": "Intermediate",
-    "title": "Barre Chords & Techniques",
-    "description": "Build your skills with barre chords and intermediate techniques",
+    "title": "Guitar Intermediate: Barre & Rhythm",
+    "description": "Barre chords, rhythm patterns, and scale basics.",
+    "passingScore": 75,
     "questions": [
       {
-        "questionId": "q1",
-        "question": "What is a barre chord?",
+        "questionId": "guitar-intermediate-q1",
+        "question": "What does a barre chord allow you to do?",
         "type": "multiple-choice",
-        "options": ["A chord played on open strings only", "A chord where one finger presses multiple strings across different frets", "A chord that uses only black strings", "A chord played very quietly"],
-        "correctAnswer": "A chord where one finger presses multiple strings across different frets",
-        "explanation": "A barre chord uses one finger (usually the index) pressed across multiple strings on the same fret to change pitch."
+        "options": ["Play open chords only", "Use one finger to press multiple strings", "Automatically tune the guitar", "Mute the strings"],
+        "correctAnswer": "Use one finger to press multiple strings",
+        "explanation": "A barre chord uses one finger to press multiple strings across a fret."
       },
       {
-        "questionId": "q2",
-        "question": "Which finger is most commonly used for barre chords?",
+        "questionId": "guitar-intermediate-q2",
+        "question": "Which scale is commonly used for rock and blues improvisation?",
         "type": "multiple-choice",
-        "options": ["Thumb", "Index finger", "Middle finger", "Pinky"],
-        "correctAnswer": "Index finger",
-        "explanation": "The index finger is typically used for barre chords because it's the longest and strongest."
+        "options": ["Major scale", "Minor pentatonic", "Whole-tone scale", "Chromatic scale"],
+        "correctAnswer": "Minor pentatonic",
+        "explanation": "The minor pentatonic scale is widely used in rock and blues solos."
       },
       {
-        "questionId": "q3",
-        "question": "True or False: Palm muting produces a softer, more controlled sound.",
+        "questionId": "guitar-intermediate-q3",
+        "question": "True or False: Palm muting produces a more muted, percussive sound.",
         "type": "true-false",
         "options": ["True", "False"],
         "correctAnswer": "True",
-        "explanation": "Palm muting involves resting the palm of your picking hand on the strings to dampen the sound and create a muted effect."
-      }
-    ],
-    "passingScore": 75
-  },
-  {
-    "quizId": "piano-intermediate-1",
-    "instrument": "Piano",
-    "level": "Intermediate",
-    "title": "Scales & Arpeggios",
-    "description": "Master scales and arpeggios for fluent playing",
-    "questions": [
-      {
-        "questionId": "q1",
-        "question": "How many notes are in a major scale?",
-        "type": "multiple-choice",
-        "options": ["5 notes", "7 notes", "8 notes", "12 notes"],
-        "correctAnswer": "7 notes",
-        "explanation": "A major scale consists of 7 notes (plus the octave, which repeats the first note)."
+        "explanation": "Palm muting dampens the strings with the picking hand to create a muted sound."
       },
       {
-        "questionId": "q2",
+        "questionId": "guitar-intermediate-q4",
+        "question": "Which technique helps with fast alternate-note runs?",
+        "type": "multiple-choice",
+        "options": ["Sweep picking", "Alternate picking", "Tapping only", "String bending"],
+        "correctAnswer": "Alternate picking",
+        "explanation": "Alternate picking uses alternating down and up strokes for speed and precision."
+      }
+    ]
+  },
+  {
+    "quizId": "guitar-advanced",
+    "instrument": "Guitar",
+    "level": "Advanced",
+    "title": "Guitar Advanced Techniques",
+    "description": "Tapping, sweep picking, hybrid picking and advanced phrasing.",
+    "passingScore": 80,
+    "questions": [
+      {
+        "questionId": "guitar-advanced-q1",
+        "question": "Which technique uses the picking hand to fret notes?",
+        "type": "multiple-choice",
+        "options": ["Sweep picking", "Tapping", "Alternate picking", "Palm muting"],
+        "correctAnswer": "Tapping",
+        "explanation": "Tapping uses the picking hand to press notes onto the fretboard."
+      },
+      {
+        "questionId": "guitar-advanced-q2",
+        "question": "What is sweep picking mainly used for?",
+        "type": "multiple-choice",
+        "options": ["Slower chord voicings", "Fast arpeggios", "Tuning stability", "Muted rhythms"],
+        "correctAnswer": "Fast arpeggios",
+        "explanation": "Sweep picking allows fast, smooth arpeggio execution across strings."
+      },
+      {
+        "questionId": "guitar-advanced-q3",
+        "question": "True or False: Hybrid picking combines a pick and fingers to pluck strings.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "Hybrid picking uses a pick plus fingers for complex phrasing."
+      },
+      {
+        "questionId": "guitar-advanced-q4",
+        "question": "Which technique adds percussive attack by slapping the strings?",
+        "type": "multiple-choice",
+        "options": ["Fingerstyle", "Slap", "Tremolo", "Harmonics"],
+        "correctAnswer": "Slap",
+        "explanation": "Slap technique strikes strings with the thumb for percussive effect."
+      }
+    ]
+  },
+  {
+    "quizId": "piano-beginner",
+    "instrument": "Piano",
+    "level": "Beginner",
+    "title": "Piano Beginner Essentials",
+    "description": "Notes, octave layout, and basic finger numbers.",
+    "passingScore": 70,
+    "questions": [
+      {
+        "questionId": "piano-beginner-q1",
+        "question": "How many keys are on a standard piano?",
+        "type": "multiple-choice",
+        "options": ["61", "73", "88", "97"],
+        "correctAnswer": "88",
+        "explanation": "A standard piano has 88 keys from A0 to C8."
+      },
+      {
+        "questionId": "piano-beginner-q2",
+        "question": "True or False: Middle C is near the center of the keyboard.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "Middle C (C4) is approximately in the middle of an 88-key keyboard."
+      },
+      {
+        "questionId": "piano-beginner-q3",
+        "question": "How many black keys are in one octave?",
+        "type": "multiple-choice",
+        "options": ["4", "5", "6", "7"],
+        "correctAnswer": "5",
+        "explanation": "Each octave has 5 black keys and 7 white keys."
+      },
+      {
+        "questionId": "piano-beginner-q4",
+        "question": "Which finger number is commonly used for the thumb?",
+        "type": "multiple-choice",
+        "options": ["1", "2", "3", "4"],
+        "correctAnswer": "1",
+        "explanation": "In piano fingering, the thumb is numbered 1."
+      }
+    ]
+  },
+  {
+    "quizId": "piano-intermediate",
+    "instrument": "Piano",
+    "level": "Intermediate",
+    "title": "Piano Intermediate: Scales & Chords",
+    "description": "Major/minor scales, basic arpeggios, and chord shapes.",
+    "passingScore": 75,
+    "questions": [
+      {
+        "questionId": "piano-intermediate-q1",
+        "question": "How many notes are in a diatonic major scale?",
+        "type": "multiple-choice",
+        "options": ["5", "7", "8", "12"],
+        "correctAnswer": "7",
+        "explanation": "A major scale contains seven distinct notes before the octave."
+      },
+      {
+        "questionId": "piano-intermediate-q2",
         "question": "What is an arpeggio?",
         "type": "multiple-choice",
-        "options": ["A chord played one note at a time", "Multiple chords played together", "A fast scale", "A technique to mute strings"],
+        "options": ["A chord played at once", "A chord played one note at a time", "A scale of five notes", "A tuning method"],
         "correctAnswer": "A chord played one note at a time",
-        "explanation": "An arpeggio breaks up a chord and plays its notes sequentially rather than simultaneously."
+        "explanation": "An arpeggio breaks a chord into separate notes played sequentially."
+      },
+      {
+        "questionId": "piano-intermediate-q3",
+        "question": "True or False: Inversions change the order of notes in a chord.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "Inversions reorder chord notes so a different note is in the bass."
+      },
+      {
+        "questionId": "piano-intermediate-q4",
+        "question": "Which chord consists of the notes C-E-G?",
+        "type": "multiple-choice",
+        "options": ["A minor", "C major", "G major", "F major"],
+        "correctAnswer": "C major",
+        "explanation": "C major triad is C-E-G."
       }
-    ],
-    "passingScore": 75
+    ]
+  },
+  {
+    "quizId": "piano-advanced",
+    "instrument": "Piano",
+    "level": "Advanced",
+    "title": "Piano Advanced Harmony",
+    "description": "Extended chords, voicings, and modulation basics.",
+    "passingScore": 80,
+    "questions": [
+      {
+        "questionId": "piano-advanced-q1",
+        "question": "Which progression is central to jazz harmony?",
+        "type": "multiple-choice",
+        "options": ["I-IV-V", "ii-V-I", "I-vi-ii-V", "V-I-IV"],
+        "correctAnswer": "ii-V-I",
+        "explanation": "The ii-V-I progression is fundamental in jazz harmony."
+      },
+      {
+        "questionId": "piano-advanced-q2",
+        "question": "True or False: Voice leading aims to move each part smoothly between chords.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "Voice leading smooths individual melodic lines between chords."
+      },
+      {
+        "questionId": "piano-advanced-q3",
+        "question": "What does a suspended chord replace in a triad?",
+        "type": "multiple-choice",
+        "options": ["The root", "The third", "The fifth", "The octave"],
+        "correctAnswer": "The third",
+        "explanation": "A suspended chord replaces the third with either the second or fourth."
+      },
+      {
+        "questionId": "piano-advanced-q4",
+        "question": "Which extended chord includes the 7th and 9th?",
+        "type": "multiple-choice",
+        "options": ["Triad", "Seventh chord", "Ninth chord", "Sus2"],
+        "correctAnswer": "Ninth chord",
+        "explanation": "A ninth chord stacks a seventh plus an added ninth above a triad."
+      }
+    ]
+  },
+  {
+    "quizId": "drums-beginner",
+    "instrument": "Drums",
+    "level": "Beginner",
+    "title": "Drums Beginner Basics",
+    "description": "Names of drums, basic stick grip, and simple beats.",
+    "passingScore": 70,
+    "questions": [
+      {
+        "questionId": "drums-beginner-q1",
+        "question": "Which drum is played with a foot pedal?",
+        "type": "multiple-choice",
+        "options": ["Snare", "Bass drum", "Tom", "Hi-hat"],
+        "correctAnswer": "Bass drum",
+        "explanation": "The bass drum is operated with a foot pedal."
+      },
+      {
+        "questionId": "drums-beginner-q2",
+        "question": "True or False: The snare drum typically has metal wires called snares beneath it.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "Snares on the bottom head produce the snare drum's distinctive sound."
+      },
+      {
+        "questionId": "drums-beginner-q3",
+        "question": "What is the common time signature for basic rock beats?",
+        "type": "multiple-choice",
+        "options": ["3/4", "4/4", "6/8", "5/4"],
+        "correctAnswer": "4/4",
+        "explanation": "Most basic rock beats are in 4/4 time."
+      },
+      {
+        "questionId": "drums-beginner-q4",
+        "question": "Which cymbal is often used for steady timekeeping?",
+        "type": "multiple-choice",
+        "options": ["Ride cymbal", "Crash cymbal", "Splash cymbal", "China cymbal"],
+        "correctAnswer": "Ride cymbal",
+        "explanation": "The ride cymbal provides a steady rhythmic pattern in many styles."
+      }
+    ]
+  },
+  {
+    "quizId": "drums-intermediate",
+    "instrument": "Drums",
+    "level": "Intermediate",
+    "title": "Drums Intermediate: Grooves & Fills",
+    "description": "Paradiddles, coordination, and simple fills.",
+    "passingScore": 75,
+    "questions": [
+      {
+        "questionId": "drums-intermediate-q1",
+        "question": "What is a paradiddle?",
+        "type": "multiple-choice",
+        "options": ["A cymbal type", "A sticking pattern", "A drum head", "A tempo marking"],
+        "correctAnswer": "A sticking pattern",
+        "explanation": "A paradiddle is a sticking pattern (RLRR LRLL) used for coordination."
+      },
+      {
+        "questionId": "drums-intermediate-q2",
+        "question": "True or False: A drum fill typically helps transition between song sections.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "Fills are used to lead into new sections or change the feel."
+      },
+      {
+        "questionId": "drums-intermediate-q3",
+        "question": "Which limb independence target is common for intermediate players?",
+        "type": "multiple-choice",
+        "options": ["Keeping all limbs same", "Playing different patterns with hands and feet", "Only using feet", "Only using hands"],
+        "correctAnswer": "Playing different patterns with hands and feet",
+        "explanation": "Limb independence trains hands and feet to play complementary rhythms."
+      },
+      {
+        "questionId": "drums-intermediate-q4",
+        "question": "Which dynamic indicates very soft playing?",
+        "type": "multiple-choice",
+        "options": ["pp", "ff", "mf", "mp"],
+        "correctAnswer": "pp",
+        "explanation": "pp stands for pianissimo, meaning very soft."
+      }
+    ]
+  },
+  {
+    "quizId": "drums-advanced",
+    "instrument": "Drums",
+    "level": "Advanced",
+    "title": "Drums Advanced: Polyrhythms & Odd Time",
+    "description": "Polyrhythms, odd meters, and advanced fills.",
+    "passingScore": 80,
+    "questions": [
+      {
+        "questionId": "drums-advanced-q1",
+        "question": "What is a polyrhythm?",
+        "type": "multiple-choice",
+        "options": ["Two rhythms played together", "A slow drum fill", "A cymbal technique", "A drum tuning method"],
+        "correctAnswer": "Two rhythms played together",
+        "explanation": "Polyrhythms layer different rhythmic groupings simultaneously."
+      },
+      {
+        "questionId": "drums-advanced-q2",
+        "question": "Which meter is an example of odd time?",
+        "type": "multiple-choice",
+        "options": ["4/4", "3/4", "7/8", "2/4"],
+        "correctAnswer": "7/8",
+        "explanation": "7/8 is an odd meter that groups beats unevenly."
+      },
+      {
+        "questionId": "drums-advanced-q3",
+        "question": "True or False: A backbeat usually emphasizes beats 2 and 4 in 4/4.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "The backbeat accentuates beats 2 and 4, common in many popular styles."
+      },
+      {
+        "questionId": "drums-advanced-q4",
+        "question": "Which technique uses brushes instead of sticks for a softer sound?",
+        "type": "multiple-choice",
+        "options": ["Matched grip", "Traditional grip", "Brushes", "Rudiments"],
+        "correctAnswer": "Brushes",
+        "explanation": "Brushes create a softer texture and are commonly used in jazz."
+      }
+    ]
+  },
+  {
+    "quizId": "violin-beginner",
+    "instrument": "Violin",
+    "level": "Beginner",
+    "title": "Violin Beginner: Parts & Tuning",
+    "description": "Basic parts, strings, and simple posture.",
+    "passingScore": 70,
+    "questions": [
+      {
+        "questionId": "violin-beginner-q1",
+        "question": "How many strings does a standard violin have?",
+        "type": "multiple-choice",
+        "options": ["3", "4", "5", "6"],
+        "correctAnswer": "4",
+        "explanation": "A standard violin has 4 strings tuned G-D-A-E."
+      },
+      {
+        "questionId": "violin-beginner-q2",
+        "question": "True or False: The bow is drawn across the strings to produce sound.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "The bow's horsehair vibrates the strings to create sound."
+      },
+      {
+        "questionId": "violin-beginner-q3",
+        "question": "What is the purpose of rosin on the bow?",
+        "type": "multiple-choice",
+        "options": ["To polish the wood", "To increase friction on hair", "To tune the violin", "To clean strings"],
+        "correctAnswer": "To increase friction on hair",
+        "explanation": "Rosin increases grip between bow hair and strings for sound production."
+      },
+      {
+        "questionId": "violin-beginner-q4",
+        "question": "Which string is the highest pitch on the violin?",
+        "type": "multiple-choice",
+        "options": ["G", "D", "A", "E"],
+        "correctAnswer": "E",
+        "explanation": "The E string is the highest pitch on a standard violin."
+      }
+    ]
+  },
+  {
+    "quizId": "violin-intermediate",
+    "instrument": "Violin",
+    "level": "Intermediate",
+    "title": "Violin Intermediate: Shifting & Vibrato",
+    "description": "Shifting positions, vibrato basics, and bow control.",
+    "passingScore": 75,
+    "questions": [
+      {
+        "questionId": "violin-intermediate-q1",
+        "question": "What does shifting allow a violinist to do?",
+        "type": "multiple-choice",
+        "options": ["Change bow speed", "Reach higher notes", "Tighten pegs", "Change strings"],
+        "correctAnswer": "Reach higher notes",
+        "explanation": "Shifting moves the left hand to higher positions to access higher pitches."
+      },
+      {
+        "questionId": "violin-intermediate-q2",
+        "question": "True or False: Vibrato adds warmth and expression to sustained notes.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "Vibrato varies pitch slightly to add expression to notes."
+      },
+      {
+        "questionId": "violin-intermediate-q3",
+        "question": "Which bow stroke produces a smooth connected sound?",
+        "type": "multiple-choice",
+        "options": ["Spiccato", "Staccato", "Legato", "Col legno"],
+        "correctAnswer": "Legato",
+        "explanation": "Legato creates smooth, connected lines when bowed."
+      },
+      {
+        "questionId": "violin-intermediate-q4",
+        "question": "What is a double stop?",
+        "type": "multiple-choice",
+        "options": ["A broken chord", "Two notes played together", "A tuning method", "A silent practice"],
+        "correctAnswer": "Two notes played together",
+        "explanation": "A double stop is when two strings are played at the same time."
+      }
+    ]
+  },
+  {
+    "quizId": "violin-advanced",
+    "instrument": "Violin",
+    "level": "Advanced",
+    "title": "Violin Advanced: Double Stops & Bowing",
+    "description": "Double stops, advanced bow strokes, and performance techniques.",
+    "passingScore": 80,
+    "questions": [
+      {
+        "questionId": "violin-advanced-q1",
+        "question": "Which stroke creates a short bouncing sound?",
+        "type": "multiple-choice",
+        "options": ["Legato", "Spiccato", "Detache", "Pizzicato"],
+        "correctAnswer": "Spiccato",
+        "explanation": "Spiccato is a bouncing bow stroke that produces short detached notes."
+      },
+      {
+        "questionId": "violin-advanced-q2",
+        "question": "True or False: Double stops require shifting and careful intonation.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "Double stops require precise finger placement and intonation."
+      },
+      {
+        "questionId": "violin-advanced-q3",
+        "question": "What is pizzicato?",
+        "type": "multiple-choice",
+        "options": ["Standing technique", "Plucking the strings", "A bow hold", "A tuning method"],
+        "correctAnswer": "Plucking the strings",
+        "explanation": "Pizzicato is played by plucking the strings with the finger."
+      },
+      {
+        "questionId": "violin-advanced-q4",
+        "question": "Which practice improves left-hand intonation?",
+        "type": "multiple-choice",
+        "options": ["Open string practice", "Slow scales with drone", "Fast runs only", "Ignoring tuning"],
+        "correctAnswer": "Slow scales with drone",
+        "explanation": "Practicing slow scales against a drone helps improve intonation."
+      }
+    ]
+  },
+  {
+    "quizId": "flute-beginner",
+    "instrument": "Flute",
+    "level": "Beginner",
+    "title": "Flute Beginner: Posture & Tone",
+    "description": "Posture, embouchure, and producing first tones.",
+    "passingScore": 70,
+    "questions": [
+      {
+        "questionId": "flute-beginner-q1",
+        "question": "Where do you blow to produce sound on a flute?",
+        "type": "multiple-choice",
+        "options": ["Into a mouthpiece", "Across the embouchure hole", "At the footjoint", "At the keys"],
+        "correctAnswer": "Across the embouchure hole",
+        "explanation": "Flute sound is produced by blowing across the embouchure hole on the headjoint."
+      },
+      {
+        "questionId": "flute-beginner-q2",
+        "question": "True or False: The flute is held horizontally when playing.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "The flute is held to the right side of the player and played horizontally."
+      },
+      {
+        "questionId": "flute-beginner-q3",
+        "question": "Which part of the flute contains the embouchure hole?",
+        "type": "multiple-choice",
+        "options": ["Footjoint", "Headjoint", "Body", "Key mechanism"],
+        "correctAnswer": "Headjoint",
+        "explanation": "The embouchure hole is located on the headjoint of the flute."
+      },
+      {
+        "questionId": "flute-beginner-q4",
+        "question": "What helps produce a clear tone?",
+        "type": "multiple-choice",
+        "options": ["Fast fingers", "Steady air stream", "Closed embouchure", "Loud volume"],
+        "correctAnswer": "Steady air stream",
+        "explanation": "A steady airstream is essential for a clean flute tone."
+      }
+    ]
+  },
+  {
+    "quizId": "flute-intermediate",
+    "instrument": "Flute",
+    "level": "Intermediate",
+    "title": "Flute Intermediate: Fingerings & Articulation",
+    "description": "Intermediate fingerings, articulation, and tone control.",
+    "passingScore": 75,
+    "questions": [
+      {
+        "questionId": "flute-intermediate-q1",
+        "question": "What improves tone quality on flute?",
+        "type": "multiple-choice",
+        "options": ["Faster tonguing", "Steady breath support", "Higher posture", "Tighter embouchure"],
+        "correctAnswer": "Steady breath support",
+        "explanation": "Consistent breath support helps produce a stable tone."
+      },
+      {
+        "questionId": "flute-intermediate-q2",
+        "question": "True or False: Double tonguing is used for fast repeated notes.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "Double tonguing uses alternating syllables for rapid articulation."
+      },
+      {
+        "questionId": "flute-intermediate-q3",
+        "question": "Which articulation produces short detached notes?",
+        "type": "multiple-choice",
+        "options": ["Legato", "Staccato", "Marcatto", "Vibrato"],
+        "correctAnswer": "Staccato",
+        "explanation": "Staccato produces short, detached notes."
+      },
+      {
+        "questionId": "flute-intermediate-q4",
+        "question": "Which register is above the normal range?",
+        "type": "multiple-choice",
+        "options": ["Low register", "Middle register", "Altissimo", "Pedal register"],
+        "correctAnswer": "Altissimo",
+        "explanation": "Altissimo refers to the extended high register on the flute."
+      }
+    ]
+  },
+  {
+    "quizId": "flute-advanced",
+    "instrument": "Flute",
+    "level": "Advanced",
+    "title": "Flute Advanced: Altissimo & Expression",
+    "description": "Advanced altissimo, extended technique, and expression.",
+    "passingScore": 80,
+    "questions": [
+      {
+        "questionId": "flute-advanced-q1",
+        "question": "What does altissimo refer to?",
+        "type": "multiple-choice",
+        "options": ["Low notes", "Middle octave", "Very high notes", "Muted tones"],
+        "correctAnswer": "Very high notes",
+        "explanation": "Altissimo refers to very high notes above the normal range."
+      },
+      {
+        "questionId": "flute-advanced-q2",
+        "question": "True or False: Extended techniques include multiphonics and flutter tonguing.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "Extended techniques include multiphonics and flutter tonguing among others."
+      },
+      {
+        "questionId": "flute-advanced-q3",
+        "question": "Which practice helps control high register notes?",
+        "type": "multiple-choice",
+        "options": ["Ignoring breath", "Focused breath support", "Faster fingerings", "No warm-up"],
+        "correctAnswer": "Focused breath support",
+        "explanation": "Strong, focused breath support aids high register control."
+      },
+      {
+        "questionId": "flute-advanced-q4",
+        "question": "Which articulation is useful for jazz phrasing?",
+        "type": "multiple-choice",
+        "options": ["Strict legato", "Flexible articulation", "No articulation", "Only staccato"],
+        "correctAnswer": "Flexible articulation",
+        "explanation": "Flexible articulation helps shape jazz phrasing and expression."
+      }
+    ]
+  },
+  {
+    "quizId": "saxophone-beginner",
+    "instrument": "Saxophone",
+    "level": "Beginner",
+    "title": "Saxophone Beginner: Setup & Sound",
+    "description": "Assembling, reed basics, and producing first sounds.",
+    "passingScore": 70,
+    "questions": [
+      {
+        "questionId": "saxophone-beginner-q1",
+        "question": "Which part holds the reed on a saxophone?",
+        "type": "multiple-choice",
+        "options": ["Neck", "Body", "Mouthpiece", "Bell"],
+        "correctAnswer": "Mouthpiece",
+        "explanation": "The reed is attached to the mouthpiece to produce sound."
+      },
+      {
+        "questionId": "saxophone-beginner-q2",
+        "question": "True or False: A softer reed is easier for beginners.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "Softer reeds require less embouchure strength and are easier for beginners."
+      },
+      {
+        "questionId": "saxophone-beginner-q3",
+        "question": "Which key helps reach higher notes?",
+        "type": "multiple-choice",
+        "options": ["Palm key", "Octave key", "Side key", "Whisper key"],
+        "correctAnswer": "Octave key",
+        "explanation": "The octave key allows access to the upper register."
+      },
+      {
+        "questionId": "saxophone-beginner-q4",
+        "question": "What is important for a steady tone?",
+        "type": "multiple-choice",
+        "options": ["Fast fingering", "Breath support", "Heavy reed", "Wide mouth"],
+        "correctAnswer": "Breath support",
+        "explanation": "Consistent breath support helps produce a steady tone."
+      }
+    ]
+  },
+  {
+    "quizId": "saxophone-intermediate",
+    "instrument": "Saxophone",
+    "level": "Intermediate",
+    "title": "Saxophone Intermediate: Tone & Technique",
+    "description": "Tone production, breath, and basic jazz phrasing.",
+    "passingScore": 75,
+    "questions": [
+      {
+        "questionId": "saxophone-intermediate-q1",
+        "question": "Which practice improves consistent tone?",
+        "type": "multiple-choice",
+        "options": ["Faster tonguing", "Breath support and long tones", "Heavy reeds only", "No practice"],
+        "correctAnswer": "Breath support and long tones",
+        "explanation": "Long tone practice and breath support improve tone consistency."
+      },
+      {
+        "questionId": "saxophone-intermediate-q2",
+        "question": "True or False: The octave key helps play higher notes.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "The octave key assists in producing higher register notes."
+      },
+      {
+        "questionId": "saxophone-intermediate-q3",
+        "question": "Which technique aids jazz phrasing?",
+        "type": "multiple-choice",
+        "options": ["Strict metronome only", "Flexible swing feel", "No dynamics", "Only scales"],
+        "correctAnswer": "Flexible swing feel",
+        "explanation": "A flexible swing feel is central to jazz phrasing."
+      },
+      {
+        "questionId": "saxophone-intermediate-q4",
+        "question": "Which articulation enhances clarity?",
+        "type": "multiple-choice",
+        "options": ["Legato", "Staccato", "Accent", "Tonguing"],
+        "correctAnswer": "Tonguing",
+        "explanation": "Good tonguing technique helps articulate notes clearly."
+      }
+    ]
+  },
+  {
+    "quizId": "saxophone-advanced",
+    "instrument": "Saxophone",
+    "level": "Advanced",
+    "title": "Saxophone Advanced: Jazz & Altissimo",
+    "description": "Advanced jazz phrasing, altissimo, and expression.",
+    "passingScore": 80,
+    "questions": [
+      {
+        "questionId": "saxophone-advanced-q1",
+        "question": "What style commonly uses swing phrasing?",
+        "type": "multiple-choice",
+        "options": ["Classical", "Jazz", "Rock", "Country"],
+        "correctAnswer": "Jazz",
+        "explanation": "Swing phrasing is a hallmark of jazz style."
+      },
+      {
+        "questionId": "saxophone-advanced-q2",
+        "question": "True or False: Altissimo requires specialized fingerings and embouchure.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "Altissimo uses specialized techniques for very high notes."
+      },
+      {
+        "questionId": "saxophone-advanced-q3",
+        "question": "Which element is key for expressive solos?",
+        "type": "multiple-choice",
+        "options": ["No dynamics", "Phrasing and dynamics", "Only speed", "Only technique"],
+        "correctAnswer": "Phrasing and dynamics",
+        "explanation": "Phrasing and dynamics are crucial for expressive solos."
+      },
+      {
+        "questionId": "saxophone-advanced-q4",
+        "question": "Which practice helps reach altissimo notes?",
+        "type": "multiple-choice",
+        "options": ["Ignoring breath", "Embouchure and harmonic exercises", "Slower tonguing", "No warm-up"],
+        "correctAnswer": "Embouchure and harmonic exercises",
+        "explanation": "Targeted embouchure and harmonic practice help access altissimo."
+      }
+    ]
+  },
+  {
+    "quizId": "trumpet-beginner",
+    "instrument": "Trumpet",
+    "level": "Beginner",
+    "title": "Trumpet Beginner: Buzz & Hold",
+    "description": "Buzzing, basic fingering, and holding the instrument.",
+    "passingScore": 70,
+    "questions": [
+      {
+        "questionId": "trumpet-beginner-q1",
+        "question": "What starts the trumpet sound?",
+        "type": "multiple-choice",
+        "options": ["Pressing valves", "Buzzing lips", "Strumming", "Blowing without buzz"],
+        "correctAnswer": "Buzzing lips",
+        "explanation": "Trumpet sound begins from the vibration of the player's lips against the mouthpiece."
+      },
+      {
+        "questionId": "trumpet-beginner-q2",
+        "question": "True or False: The trumpet is supported by the left hand while valves are pressed with the right.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "The left hand supports the trumpet while the right operates the valves."
+      },
+      {
+        "questionId": "trumpet-beginner-q3",
+        "question": "Which part changes pitch on the trumpet?",
+        "type": "multiple-choice",
+        "options": ["Mouthpiece", "Valves", "Bell", "Slides"],
+        "correctAnswer": "Valves",
+        "explanation": "Valves change the length of the tubing and alter pitch."
+      },
+      {
+        "questionId": "trumpet-beginner-q4",
+        "question": "What helps produce higher notes?",
+        "type": "multiple-choice",
+        "options": ["Weaker breath", "Stronger breath support", "Closed valves", "No mouthpiece"],
+        "correctAnswer": "Stronger breath support",
+        "explanation": "Strong, focused breath support aids higher register notes."
+      }
+    ]
+  },
+  {
+    "quizId": "trumpet-intermediate",
+    "instrument": "Trumpet",
+    "level": "Intermediate",
+    "title": "Trumpet Intermediate: Range & Articulation",
+    "description": "Valve combinations, articulation, and range work.",
+    "passingScore": 75,
+    "questions": [
+      {
+        "questionId": "trumpet-intermediate-q1",
+        "question": "Which valve combination often plays low G?",
+        "type": "multiple-choice",
+        "options": ["Open", "First", "Second", "First and second"],
+        "correctAnswer": "First and second",
+        "explanation": "First and second valves together produce lower pitches like low G."
+      },
+      {
+        "questionId": "trumpet-intermediate-q2",
+        "question": "True or False: Smooth tonguing is important for lyrical trumpet lines.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "Clean tonguing helps make lyrical trumpet lines smooth and musical."
+      },
+      {
+        "questionId": "trumpet-intermediate-q3",
+        "question": "Which practice develops mid-range control?",
+        "type": "multiple-choice",
+        "options": ["No practice", "Lip slurs and long tones", "Only scales", "Only fast runs"],
+        "correctAnswer": "Lip slurs and long tones",
+        "explanation": "Lip slurs and long-tone practice improve control across the range."
+      },
+      {
+        "questionId": "trumpet-intermediate-q4",
+        "question": "What does mute change?",
+        "type": "multiple-choice",
+        "options": ["Pitch only", "Tone color and volume", "Fingerings", "No effect"],
+        "correctAnswer": "Tone color and volume",
+        "explanation": "Mutes change the tone color and reduce volume."
+      }
+    ]
+  },
+  {
+    "quizId": "trumpet-advanced",
+    "instrument": "Trumpet",
+    "level": "Advanced",
+    "title": "Trumpet Advanced: Upper Register & Flexibility",
+    "description": "High register control, flexibility, and orchestral techniques.",
+    "passingScore": 80,
+    "questions": [
+      {
+        "questionId": "trumpet-advanced-q1",
+        "question": "Which is essential for strong upper register playing?",
+        "type": "multiple-choice",
+        "options": ["Soft air", "Firm breath support", "Closed throat", "No warm-up"],
+        "correctAnswer": "Firm breath support",
+        "explanation": "Firm breath support and embouchure control are essential for the upper register."
+      },
+      {
+        "questionId": "trumpet-advanced-q2",
+        "question": "True or False: Flexibility exercises improve range and endurance.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "Flexibility exercises like lip slurs improve range and endurance."
+      },
+      {
+        "questionId": "trumpet-advanced-q3",
+        "question": "What helps produce smooth slurs?",
+        "type": "multiple-choice",
+        "options": ["Fast tonguing", "Legato tonguing and airflow", "No breath", "Heavy pressure"],
+        "correctAnswer": "Legato tonguing and airflow",
+        "explanation": "Legato tonguing combined with steady airflow produces smooth slurs."
+      },
+      {
+        "questionId": "trumpet-advanced-q4",
+        "question": "Which piece of equipment affects tone color most?",
+        "type": "multiple-choice",
+        "options": ["Valve oil", "Mouthpiece", "Cleaning cloth", "Mute case"],
+        "correctAnswer": "Mouthpiece",
+        "explanation": "Mouthpiece shape and cup depth influence tone color significantly."
+      }
+    ]
+  },
+  {
+    "quizId": "bass-beginner",
+    "instrument": "Bass",
+    "level": "Beginner",
+    "title": "Bass Beginner: Strings & Groove",
+    "description": "Open strings, plucking technique, and basic grooves.",
+    "passingScore": 70,
+    "questions": [
+      {
+        "questionId": "bass-beginner-q1",
+        "question": "What are the standard open strings on a 4-string bass from lowest to highest?",
+        "type": "multiple-choice",
+        "options": ["E A D G", "A D G C", "D G C F", "B E A D"],
+        "correctAnswer": "E A D G",
+        "explanation": "Standard 4-string bass tuning is E-A-D-G from lowest to highest."
+      },
+      {
+        "questionId": "bass-beginner-q2",
+        "question": "True or False: Alternating index and middle fingers is a common plucking technique.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "Alternating index and middle fingers is common for basic bass lines."
+      },
+      {
+        "questionId": "bass-beginner-q3",
+        "question": "Which role does bass usually serve in a band?",
+        "type": "multiple-choice",
+        "options": ["Lead melody", "Rhythmic and harmonic foundation", "Only solos", "Stage lighting"],
+        "correctAnswer": "Rhythmic and harmonic foundation",
+        "explanation": "Bass provides both rhythm and harmonic support in many genres."
+      },
+      {
+        "questionId": "bass-beginner-q4",
+        "question": "Which tool helps tune a bass?",
+        "type": "multiple-choice",
+        "options": ["Metronome", "Tuner", "Capo", "Slide"],
+        "correctAnswer": "Tuner",
+        "explanation": "A tuner helps ensure the instrument is in tune."
+      }
+    ]
+  },
+  {
+    "quizId": "bass-intermediate",
+    "instrument": "Bass",
+    "level": "Intermediate",
+    "title": "Bass Intermediate: Groove & Walking",
+    "description": "Walking bass lines, locking with drums, and tone control.",
+    "passingScore": 75,
+    "questions": [
+      {
+        "questionId": "bass-intermediate-q1",
+        "question": "What does a walking bass line usually use?",
+        "type": "multiple-choice",
+        "options": ["Random notes", "Chord tones and passing notes", "Open strings only", "Single repeated note"],
+        "correctAnswer": "Chord tones and passing notes",
+        "explanation": "Walking bass lines move between chord tones using passing notes."
+      },
+      {
+        "questionId": "bass-intermediate-q2",
+        "question": "True or False: Locking in with the drummer helps keep the groove tight.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "Bass and drums working together create a solid rhythmic foundation."
+      },
+      {
+        "questionId": "bass-intermediate-q3",
+        "question": "Which technique adds percussive attack on bass?",
+        "type": "multiple-choice",
+        "options": ["Fingerstyle", "Slap", "Arco", "Tremolo"],
+        "correctAnswer": "Slap",
+        "explanation": "Slap uses the thumb to strike strings producing a percussive sound."
+      },
+      {
+        "questionId": "bass-intermediate-q4",
+        "question": "Which practice improves timing?",
+        "type": "multiple-choice",
+        "options": ["Playing without a metronome", "Metronome practice", "Only scales", "Ignoring rhythm"],
+        "correctAnswer": "Metronome practice",
+        "explanation": "Practicing with a metronome improves timing and consistency."
+      }
+    ]
+  },
+  {
+    "quizId": "bass-advanced",
+    "instrument": "Bass",
+    "level": "Advanced",
+    "title": "Bass Advanced: Slap & Soloing",
+    "description": "Slap technique, tapping, and melodic soloing.",
+    "passingScore": 80,
+    "questions": [
+      {
+        "questionId": "bass-advanced-q1",
+        "question": "What is slap bass?",
+        "type": "multiple-choice",
+        "options": ["Plucking with a pick", "Hitting strings with the thumb", "Tuning method", "Bow technique"],
+        "correctAnswer": "Hitting strings with the thumb",
+        "explanation": "Slap bass uses the thumb to strike the strings for a percussive attack."
+      },
+      {
+        "questionId": "bass-advanced-q2",
+        "question": "True or False: Melodic bass solos rely on phrasing and scale choices.",
+        "type": "true-false",
+        "options": ["True", "False"],
+        "correctAnswer": "True",
+        "explanation": "Good bass solos use phrasing and appropriate scales rather than random notes."
+      },
+      {
+        "questionId": "bass-advanced-q3",
+        "question": "Which effect can thicken bass tone?",
+        "type": "multiple-choice",
+        "options": ["Reverb", "Compression", "Chorus", "Delay"],
+        "correctAnswer": "Compression",
+        "explanation": "Compression evens out dynamics and can make bass tone thicker."
+      },
+      {
+        "questionId": "bass-advanced-q4",
+        "question": "Which technique adds harmonic color?",
+        "type": "multiple-choice",
+        "options": ["Palm mute", "Harmonics", "Strumming", "Tremolo"],
+        "correctAnswer": "Harmonics",
+        "explanation": "Natural and artificial harmonics add distinct tonal colors."
+      }
+    ]
   }
 ]

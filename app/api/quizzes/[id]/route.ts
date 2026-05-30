@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import Quiz from "@/app/models/Quiz";
-import clientPromise from "@/app/lib/mongodb-client";
+import connectMongoDB from "@/app/lib/mongodb";
 
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    await clientPromise;
+    await connectMongoDB();
     
     const { id } = await params;
     const quiz = await Quiz.findOne({ quizId: id });

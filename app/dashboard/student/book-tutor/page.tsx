@@ -73,7 +73,7 @@ export default function BookTutorPage() {
 
   return (
     <div className="min-h-screen bg-[#0d0d0d] text-slate-300 font-sans p-8 md:p-16 selection:bg-[#ff5a00]/30">
-      <div className="max-w-3xl mx-auto">
+      <div className="w-full mx-auto">
 
         {step === "list" && (
           <button
@@ -106,7 +106,7 @@ export default function BookTutorPage() {
               <>
                 <TutorProfile tutor={tutorInfo} onBack={handleBackToList} />
                 <BookingForm
-                  sessionFee={tutorInfo.sessionFee}
+                  sessionFee={Number(tutorInfo.sessionFee) || 0}
                   studentEmail={session?.user?.email || ""}
                   onSubmit={handleFormSubmit}
                   isLoading={isSubmitting}

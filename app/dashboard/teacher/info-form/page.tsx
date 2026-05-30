@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FaInstagram, FaYoutube, FaTiktok, FaFacebook } from "react-icons/fa";
@@ -11,6 +11,7 @@ export default function TeacherInfoForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: session?.user?.email || "",
+    sessionFee: "",
     instrument: "",
     contact: "",
     bio: "",
@@ -18,6 +19,34 @@ export default function TeacherInfoForm() {
     preferredContact: "",
   });
   const [submitting, setSubmitting] = useState(false);
+  const [formError, setFormError] = useState("");
+
+  useEffect(() => {
+    if (!session?.user?.email) return;
+
+    fetch(`/api/teacher-info?userId=${encodeURIComponent(session?.user?.email || "")}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.exists) {
+          setFormData({
+            name: data.info.name || "",
+            email: data.info.email || session?.user?.email || "",
+            sessionFee: data.info.sessionFee || "",
+            instrument: data.info.instrument || "",
+            contact: data.info.contact || "",
+            bio: data.info.bio || "",
+            social: {
+              instagram: data.info.social?.instagram || "",
+              youtube: data.info.social?.youtube || "",
+              tiktok: data.info.social?.tiktok || "",
+              facebook: data.info.social?.facebook || "",
+            },
+            preferredContact: data.info.preferredContact || "",
+          });
+        }
+      })
+      .catch(() => {});
+  }, [session?.user?.email]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -31,6 +60,15 @@ export default function TeacherInfoForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.preferredContact) {
+      setFormError("Please select your preferred contact method.");
+      return;
+    }
+    if (!formData.sessionFee || Number(formData.sessionFee) <= 0) {
+      setFormError("Please enter a valid per-session fee.");
+      return;
+    }
+    setFormError("");
     setSubmitting(true);
     await fetch("/api/teacher-info", {
       method: "POST",
@@ -92,6 +130,24 @@ export default function TeacherInfoForm() {
           />
           <label className="absolute left-2 -top-3 text-slate-400 text-sm peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-500 transition-all">
             Instrument(s)
+          </label>
+        </div>
+
+        {/* Session Fee */}
+        <div className="relative">
+          <input
+            type="number"
+            name="sessionFee"
+            value={formData.sessionFee as any}
+            onChange={handleChange}
+            placeholder="Per-session fee (Rs.)"
+            className="peer w-full border-b border-slate-600 bg-transparent p-2 text-white placeholder-transparent focus:outline-none focus:border-[#ff5a00] transition-all"
+            min={0}
+            step={1}
+            required
+          />
+          <label className="absolute left-2 -top-3 text-slate-400 text-sm peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-500 transition-all">
+            Per-session Fee (Rs.)
           </label>
         </div>
 
@@ -207,20 +263,9 @@ export default function TeacherInfoForm() {
             </button>
           </div>
           {/* Hidden select for form validation */}
-          <select
-            name="preferredContact"
-            value={formData.preferredContact}
-            onChange={handleChange}
-            required
-            className="hidden"
-            tabIndex={-1}
-            aria-hidden="true"
-          >
-            <option value="" disabled>Preferred Contact Method</option>
-            <option value="email">Email</option>
-            <option value="phone">Phone</option>
-            <option value="social">Social Media</option>
-          </select>
+          <div className="mt-3 text-sm text-red-400 min-h-[1.25rem]">
+            {formError}
+          </div>
         </div>
 
         {/* Submit */}

@@ -1,106 +1,66 @@
-import { NextRequest, NextResponse } from "next/server";
-import  connectMongoDB from "@/app/lib/mongodb";
-import { 
-  sendLessonAcceptanceEmail, 
-  sendLessonRejectionEmail 
-} from "@/app/lib/mailer";
+import { NextResponse } from "next/server";
+import connectMongoDB from "@/app/lib/mongodb";
 
-interface BookingRequest {
-  _id?: string;
-  studentEmail?: string;
-  studentName?: string;
-  tutorId?: string;
-  time?: string;
-  status?: string;
-}
-
-export async function POST(request: NextRequest) {
+export async function POST(req: Request) {
   try {
-    const body = await request.json();
-    const { bookingId, action, reason, studentEmail, studentName, teacherName, lessonTime } = body;
-
-    // Log for debugging
-    console.log("Booking response payload:", body);
-
-    // Validate required fields with helpful error messages
-    const missingFields = [];
-    if (!bookingId) missingFields.push("bookingId");
-    if (!action) missingFields.push("action");
-    if (!studentEmail) missingFields.push("studentEmail");
-    if (!studentName) missingFields.push("studentName");
-    if (!teacherName) missingFields.push("teacherName");
-
-    if (missingFields.length > 0) {
-      return NextResponse.json(
-        { error: `Missing required fields: ${missingFields.join(", ")}` },
-        { status: 400 }
-      );
-    }
-
-    // Validate action
-    if (!["accept", "reject"].includes(action)) {
-      return NextResponse.json(
-        { error: "Invalid action. Use 'accept' or 'reject'" },
-        { status: 400 }
-      );
-    }
-
+    const { bookingId, action, reason, studentEmail, studentName, teacherName, lessonTime } = await req.json();
+    
     await connectMongoDB();
+    const { default: Booking } = await import("@/app/models/Booking");
     
-    // Import models inside the function to ensure connection
-    const { default: BookingModel } = await import("@/app/models/Booking");
-    
-    // Update booking status in database
-    const updateData: Record<string, any> = { 
+    // Update booking status
+    const updateData: any = {
       status: action === "accept" ? "accepted" : "rejected",
-      updatedAt: new Date()
+      updatedAt: new Date(),
     };
     
     if (action === "reject" && reason) {
       updateData.rejectionReason = reason;
     }
-
-    const updatedBooking = await BookingModel.findByIdAndUpdate(bookingId, updateData, { new: true });
     
-    if (!updatedBooking) {
+    const booking = await Booking.findByIdAndUpdate(
+      bookingId,
+      updateData,
+      { new: true }
+    );
+    
+    if (!booking) {
       return NextResponse.json(
         { error: "Booking not found" },
         { status: 404 }
       );
     }
-
-    // Send appropriate email
-    let emailResult;
-    if (action === "accept") {
-      emailResult = await sendLessonAcceptanceEmail(
-        studentEmail,
-        studentName,
-        teacherName,
-        lessonTime
-      );
-    } else {
-      emailResult = await sendLessonRejectionEmail(
-        studentEmail,
-        studentName,
-        teacherName,
-        reason || "The tutor is currently unavailable"
-      );
+    
+    // Send email notification to student
+    try {
+      await fetch(`${process.env.NEXTAUTH_URL}/api/send-booking-status-email`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          studentEmail,
+          studentName,
+          teacherName,
+          action,
+          reason: action === "reject" ? reason : null,
+          lessonTime,
+          bookingId,
+        }),
+      });
+    } catch (emailError) {
+      console.error("Failed to send email notification:", emailError);
     }
-
-    if (!emailResult.success) {
-      console.warn("Email send warning:", emailResult.error);
-      // Don't fail the request if email fails, but log it
-    }
-
-    return NextResponse.json({
-      success: true,
-      message: `Lesson request ${action}ed successfully. Email sent to ${studentEmail}.`,
-      emailSent: emailResult.success,
+    
+    return NextResponse.json({ 
+      success: true, 
+      booking,
+      message: action === "accept" 
+        ? "Lesson request accepted! Student has been notified." 
+        : "Lesson request rejected. Student has been notified."
     });
-  } catch (error) {
-    console.error("Error processing booking response:", error);
+  } catch (err) {
+    console.error("Booking response error:", err);
     return NextResponse.json(
-      { error: "Failed to process booking response", details: (error as Error).message },
+      { error: "Failed to process booking response", details: (err as Error).message },
       { status: 500 }
     );
   }
